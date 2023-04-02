@@ -1,10 +1,11 @@
-class CreateNotices < ActiveRecord::Migration[6.1]
+class CreateNotifications < ActiveRecord::Migration[6.1]
   def change
-    create_table :notices do |t|
-      t.boolean :read, default: false
+    create_table :notifications do |t|
+      t.boolean :read, null: false, default: false
       t.references :employee, null: true, foreign_key: true
       t.references :shift, null: true, foreign_key: true
       t.references :absence, null: true, foreign_key: true
+      t.integer :type, default: 0
 
       t.timestamps
     end

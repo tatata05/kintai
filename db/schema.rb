@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_31_080401) do
+ActiveRecord::Schema.define(version: 2023_03_30_064804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "absences", force: :cascade do |t|
+    t.integer "status", default: 0
     t.bigint "shift_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
     t.index ["shift_id"], name: "index_absences_on_shift_id"
   end
 
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 2023_03_31_080401) do
     t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email", "phone_number"], name: "index_employees_on_email_and_phone_number", unique: true
+    t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["emergency_phone_number"], name: "index_employees_on_emergency_phone_number", unique: true
+    t.index ["phone_number"], name: "index_employees_on_phone_number", unique: true
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2023_03_31_080401) do
     t.bigint "employee_id"
     t.bigint "shift_id"
     t.bigint "absence_id"
+    t.integer "type", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["absence_id"], name: "index_notifications_on_absence_id"
@@ -62,10 +64,10 @@ ActiveRecord::Schema.define(version: 2023_03_31_080401) do
   create_table "shifts", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
+    t.integer "status", default: 0
     t.bigint "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
     t.index ["employee_id"], name: "index_shifts_on_employee_id"
   end
 

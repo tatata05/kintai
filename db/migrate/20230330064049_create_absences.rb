@@ -1,7 +1,7 @@
 class CreateAbsences < ActiveRecord::Migration[6.1]
   def change
     create_table :absences do |t|
-      t.string :status, default: "未承認"
+      t.integer :status, default: 0
       t.references :shift, null: false, foreign_key: true
 
       t.timestamps

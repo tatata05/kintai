@@ -8,9 +8,12 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
       t.string :address
       t.string :phone_number, unique: true
       t.string :emergency_phone_number
-      t.string :password_digest, null: false
+      t.string :password, null: false
 
       t.timestamps
     end
+    add_index :employees, :email, unique: true
+    add_index :employees, :phone_number, unique: true
+    add_index :employees, :emergency_phone_number, unique: true
   end
 end
