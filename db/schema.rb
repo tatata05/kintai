@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_03_30_064804) do
     t.bigint "employee_id"
     t.bigint "shift_id"
     t.bigint "absence_id"
-    t.integer "type", default: 0
+    t.integer "kind", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["absence_id"], name: "index_notifications_on_absence_id"
