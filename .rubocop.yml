@@ -1,0 +1,26 @@
+require:
+  - rubocop-rails
+
+AllCops:
+ Exclude:
+    - "Gemfile"
+    - "Rakefile"
+    - "bin/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "config/**/*"
+    - "app/channels/**/*"
+    - "lib/tasks/auto_annotate_models.rake"
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
