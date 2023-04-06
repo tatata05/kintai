@@ -24,3 +24,9 @@ Style/EmptyMethod:
   Enabled: false
 Style/RedundantRegexpCharacterClass:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
