@@ -11,6 +11,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
+  #以下は、アカウント登録をしたときにそのアカウントに自動でログインしないための定義
   def sign_up(resource_name, current_user)
   end
 
