@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   resources :shifts
   resources :absences
+  resources :admins, only: [:index, :edit, :update]
+  resources :employees, only: [:index, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
