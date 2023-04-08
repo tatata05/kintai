@@ -2,7 +2,7 @@ class CreateAbsences < ActiveRecord::Migration[6.1]
   def change
     create_table :absences do |t|
       t.integer :status, default: 0
-      t.references :shift, null: false, foreign_key: true
+      t.references :shift, null: false, foreign_key: true, index: {unique: true}
 
       t.timestamps
     end
