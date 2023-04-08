@@ -1,9 +1,3 @@
-<%= week_calendar events: @shifts do |date, shifts| %>
+<%= week_calendar attribute: :date, events: @shifts do |date, shifts| %>
   <%= date.day %>
-  <% shifts.each do |shift| %>
-    <div>
-      <%= shift.employee.name %>
-      <%= shift.start_time %>
-    </div>
-  <% end %>
 <% end %>

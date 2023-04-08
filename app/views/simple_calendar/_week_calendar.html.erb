@@ -40,6 +40,13 @@
             <td><%= time %></td>
             <% week.each do |day| %>
               <td>
+              <% @shifts.each do |shift| %>
+                <div>
+                  <% if shift.date == day && shift.starting_time == time %>
+                  <%= link_to shift.employee.name, "/" %>
+                  <% end %>
+                </div>
+              <% end %>
               </td>
             <% end %>
           </tr>
