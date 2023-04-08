@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2023_04_03_081916) do
   create_table "admins", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
-    t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 2023_04_03_081916) do
     t.string "address"
     t.string "phone_number"
     t.string "emergency_phone_number"
-    t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
@@ -53,7 +51,6 @@ ActiveRecord::Schema.define(version: 2023_04_03_081916) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_employees_on_email", unique: true
-    t.index ["emergency_phone_number"], name: "index_employees_on_emergency_phone_number", unique: true
     t.index ["phone_number"], name: "index_employees_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end

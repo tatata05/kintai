@@ -1,8 +1,9 @@
 ja:
   activerecord:
     attributes:
-      employee: #これがmodel
+      employee:
         name: "名前"
+        age: "年齢"
         gender: "性別"
         address: "住所"
         phone_number: "電話番号"

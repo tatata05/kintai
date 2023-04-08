@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admins::RegistrationsController < Devise::RegistrationsController
+  prepend_before_action :require_no_authentication, only: [:cancel]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,9 +11,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  #以下は、アカウント登録をしたときにそのアカウントに自動でログインしないための定義
+  def sign_up(resource_name, current_user)
+  end
 
   # GET /resource/edit
   # def edit

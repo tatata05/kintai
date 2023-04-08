@@ -1,10 +1,32 @@
 <header class="navbar navbar-expand-md bg-dark text-white fixed-top">
   <div class="container">
     <%= link_to "kintai", root_path , id: "logo" %>
+    <% if current_admin.present? #ログイン状態確認用%>
+    <%= current_admin.name %>
+    <% end %>
+    <% if current_employee.present? #ログイン状態確認用 %>
+    <%= current_employee.name %>
+    <% end %>
     <nav>
       <ul class="navbar-nav nav navbar-right">
-          <li><%= link_to "従業員ログイン", "#" %></li>
-          <li><%= link_to "管理者ログイン", "#" %></li>
+        <% if current_admin.present? %>
+          <li><%= link_to "シフトカレンダー", "/" %></li>
+          <li><%= link_to "通知一覧", "/" %></li>
+          <li><%= link_to "管理者一覧", "/" %></li>
+          <li><%= link_to "管理者登録", new_admin_registration_path %></li>
+          <li><%= link_to "従業員一覧", "/" %></li>
+          <li><%= link_to "従業員登録", new_employee_registration_path %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <% elsif current_employee.present? %>
+          <li><%= link_to "シフトカレンダー", "/" %></li>
+          <li><%= link_to "シフト申請", "/" %></li>
+          <li><%= link_to "欠勤申請", "/" %></li>
+          <li><%= link_to "通知一覧", "/" %></li>
+          <li><%= link_to "ログアウト", destroy_employee_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "従業員ログイン", new_employee_session_path %></li>
+          <li><%= link_to "管理者ログイン", new_admin_session_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
