@@ -1,34 +1,17 @@
 <% provide(:title, "shift_apply") %>
 <div class="top">
   <h1>シフト申請</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @shift, local: true) do |f| %>
-      <%= f.label :date, "日付" %>
-      <%= f.date_field :date %>
-      <%= f.label :starting_time, "開始時間" %>
-      <%= f.text_field :starting_time %>
-      <%= f.label :ending_time, "終了時間" %>
-      <%= f.text_field :ending_time %>
-      <%= f.submit "シフトを申請する", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
-
-
-<div class="row">
-      <%= form_with(model: @shift, remote: true) do |f| %>
-
-        <div class="form-inline text-left">
-         <%= f.label :start_time,"開始時刻", {class:'control-label'}%>
-         <%= f.datetime_select :start_time, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
+    <div class="row">
+      <%= form_with(model: @shift, local: true) do |f| %>
+        <div class="form-inline">
+          <%= f.label :start_time,"開始時刻" %>
+          <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
         </div>
-         <br>
-        <div class="form-inline text-left"> 
-         <%= f.label :end_time,"終了時刻", {class:'control-label'}%>
-         <%= f.datetime_select :end_time, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
+        <br>
+        <div class="form-inline"> 
+          <%= f.label :end_time,"終了時刻" %>
+          <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
         </div>
-
-        <%= f.submit "登録",   class: "btn btn-primary js-event-create-btn" %>
+        <%= f.submit "シフト申請をする",   class: "btn btn-primary" %>
       <% end %>
-</div>
+    </div>
