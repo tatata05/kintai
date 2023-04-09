@@ -10,3 +10,5 @@ ja:
         emergency_phone_number: "緊急連絡先"
       admin:
         name: "名前"
+      shift:
+        end_time: "終了時刻"

@@ -1,5 +1,8 @@
 <% provide(:title, "shift_apply") %>
 <div class="top">
+  <% @shift.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
   <h1>シフト申請</h1>
     <div class="row">
       <%= form_with(model: @shift, local: true) do |f| %>
