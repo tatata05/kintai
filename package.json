@@ -2,6 +2,11 @@
   "name": "kintai",
   "private": true,
   "dependencies": {
+    "@fullcalendar/core": "^6.1.5",
+    "@fullcalendar/daygrid": "^6.1.5",
+    "@fullcalendar/google-calendar": "^6.1.5",
+    "@fullcalendar/interaction": "^6.1.5",
+    "@fullcalendar/timegrid": "^6.1.5",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",

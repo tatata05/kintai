@@ -1,6 +1,7 @@
 class ShiftsController < ApplicationController
   def index
-    @shifts = Shift.all
+    #fullcalendarは@eventsという変数が必須
+    @events = Shift.all
   end
 
   def new
@@ -21,6 +22,6 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:date, :starting_time, :ending_time)
+    params.require(:shift).permit(:start_time, :end_time)
   end
 end
