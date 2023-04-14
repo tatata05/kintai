@@ -4,17 +4,18 @@
     <%= message %>
   <% end %>
   <h1>シフト申請</h1>
-    <div class="row">
-      <%= form_with(model: @shift, local: true) do |f| %>
-        <div class="form-inline">
-          <%= f.label :start_time,"開始時刻" %>
-          <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
-        </div>
-        <br>
-        <div class="form-inline"> 
-          <%= f.label :end_time,"終了時刻" %>
-          <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
-        </div>
-        <%= f.submit "シフト申請をする",   class: "btn btn-primary" %>
-      <% end %>
-    </div>
+  <div class="row">
+    <%= form_with(model: @shift, local: true) do |f| %>
+      <div class="form-inline">
+        <%= f.label :start_time,"開始時刻" %>
+        <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
+      </div>
+      <br>
+      <div class="form-inline"> 
+        <%= f.label :end_time,"終了時刻" %>
+        <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
+      </div>
+      <%= f.submit "シフト申請をする",   class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
