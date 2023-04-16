@@ -1,0 +1,15 @@
+<% provide(:title, "absence_show") %>
+<div class="top">
+  <h2>欠勤詳細</h2>
+  <% if @absence == nil %>
+    <p>該当する欠勤は存在しません</p>
+  <% else %>
+    <div>
+      <p>[従業員名]<br><%= @absence.shift.employee.name %></p>
+      <p>[開始時間]<br><%= @absence.shift.start_time %></p>
+      <p>[終了時間]<br><%= @absence.shift.end_time %></p>
+      <p>[ステータス]<br><%= @absence.shift.status %></p>
+    </div>
+    <%= link_to "取消", root_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

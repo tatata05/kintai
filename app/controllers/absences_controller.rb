@@ -19,6 +19,10 @@ class AbsencesController < ApplicationController
     end
   end
 
+  def show
+    @absence = Absence.find_by(id: params[:id])
+  end
+
   private
 
   def absence_params
