@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_04_03_081916) do
     t.bigint "shift_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["shift_id"], name: "index_absences_on_shift_id"
+    t.index ["shift_id"], name: "index_absences_on_shift_id", unique: true
   end
 
   create_table "admins", force: :cascade do |t|
