@@ -19,6 +19,10 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def show
+    @shift = Shift.find_by(id: params[:id])
+  end
+
   private
 
   def shift_params
