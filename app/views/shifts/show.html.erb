@@ -10,7 +10,7 @@
       <p>[終了時間]<br><%= @shift.end_time %></p>
       <p>[ステータス]<br><%= @shift.status %></p>
     </div>
-    <% if employee_signed_in? %>
+    <% if employee_signed_in? && @shift.status == "unapproved" %>
       <%= link_to "編集", edit_shift_path, class: "btn btn-primary" %>
       <%= link_to "取消", @shift, method: :delete, data: {confirm: "シフトを削除してよろしいですか？"}, class: "btn btn-primary" %>
     <% end %>
@@ -19,7 +19,7 @@
         <%= link_to "未承認に戻す", shift_path(shift: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
       <% elsif @shift.status == "unapproved" %>
         <%= link_to "承認", shift_path(shift: {status: "approved"}), method: :put, class: "btn btn-primary" %>
-        <%= link_to "却下", shift_path(shift: {status: "rejected"}), method: :put, class: "btn btn-primary" %>
+        <%= link_to "却下", shift_path(shift: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
       <% end %>
     <% end %>
   <% end %>
