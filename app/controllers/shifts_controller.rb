@@ -23,9 +23,26 @@ class ShiftsController < ApplicationController
     @shift = Shift.find_by(id: params[:id])
   end
 
+  def update
+    @shift = Shift.find_by(id: params[:id])
+    @shift.assign_attributes(shift_params)
+    if @shift.save
+      flash[:success] = "更新しました"
+      redirect_to shift_path
+    else
+      flash[:danger] = "更新に失敗しました"
+      redirect_to shift_path
+    end
+  end
+
+  def destroy
+    Shift.find_by(id: params[:id]).destroy
+    redirect_to shifts_path
+  end
+
   private
 
   def shift_params
-    params.require(:shift).permit(:start_time, :end_time)
+    params.require(:shift).permit(:start_time, :end_time, :status)
   end
 end
