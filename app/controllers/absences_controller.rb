@@ -23,9 +23,27 @@ class AbsencesController < ApplicationController
     @absence = Absence.find_by(id: params[:id])
   end
 
+  def update
+    @absence = Absence.find_by(id: params[:id])
+    @absence.assign_attributes(absence_params)
+    if @absence.save
+      flash[:success] = "更新しました"
+      redirect_to absence_path
+    else
+      flash[:danger] = "更新に失敗しました"
+      redirect_to absence_path
+    end
+  end
+
+  def destroy
+    Absence.find_by(id: params[:id]).destroy
+    flash[:success] = "欠勤申請を削除しました"
+    redirect_to shifts_path
+  end
+
   private
 
   def absence_params
-    params.require(:absence).permit(:shift_id)
+    params.require(:absence).permit(:shift_id, :status)
   end
 end

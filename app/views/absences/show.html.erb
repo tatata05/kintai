@@ -8,14 +8,18 @@
       <p>[従業員名]<br><%= @absence.shift.employee.name %></p>
       <p>[開始時間]<br><%= @absence.shift.start_time %></p>
       <p>[終了時間]<br><%= @absence.shift.end_time %></p>
-      <p>[ステータス]<br><%= @absence.shift.status %></p>
+      <p>[ステータス]<br><%= @absence.status %></p>
     </div>
-    <% if employee_signed_in? %>
-      <%= link_to "取消", root_path, class: "btn btn-primary" %>
+    <% if employee_signed_in? && @absence.status == "unapproved" %>
+      <%= link_to "取消", @absence, method: :delete, data: {confirm: "欠勤申請を削除してよろしいですか？"}, class: "btn btn-primary" %>
     <% end %>
     <% if admin_signed_in? %>
-      <%= link_to "承認", root_path, class: "btn btn-primary" %>
-      <%= link_to "却下", root_path, class: "btn btn-primary" %>
+      <% if @absence.status == "approved" || @absence.status == "rejected" %>
+        <%= link_to "未承認に戻す", absence_path(absence: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
+      <% elsif @absence.status == "unapproved" %>
+        <%= link_to "承認", absence_path(absence: {status: "approved"}), method: :put, class: "btn btn-primary" %>
+        <%= link_to "却下", absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
