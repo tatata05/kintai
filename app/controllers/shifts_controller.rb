@@ -23,6 +23,10 @@ class ShiftsController < ApplicationController
     @shift = Shift.find_by(id: params[:id])
   end
 
+  def edit
+    @shift = Shift.find_by(id: params[:id])
+  end
+
   def update
     @shift = Shift.find_by(id: params[:id])
     @shift.assign_attributes(shift_params)
