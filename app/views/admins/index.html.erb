@@ -1,0 +1,8 @@
+<% provide(:title, "Admins_Index") %>
+<div class="top">
+  <h2>管理者一覧</h2>
+  <% @admins.each do |admin| %>
+    <p><%= link_to admin.name, admin %></p>
+    <p><%= admin.email %></p>
+  <% end %>
+</div>

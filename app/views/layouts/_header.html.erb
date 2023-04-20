@@ -12,9 +12,9 @@
         <% if current_admin.present? %>
           <li><%= link_to "シフトカレンダー", shifts_path %></li>
           <li><%= link_to "通知一覧", "/" %></li>
-          <li><%= link_to "管理者一覧", "/" %></li>
+          <li><%= link_to "管理者一覧", admins_path %></li>
           <li><%= link_to "管理者登録", new_admin_registration_path %></li>
-          <li><%= link_to "従業員一覧", "/" %></li>
+          <li><%= link_to "従業員一覧", employees_path %></li>
           <li><%= link_to "従業員登録", new_employee_registration_path %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
         <% elsif current_employee.present? %>

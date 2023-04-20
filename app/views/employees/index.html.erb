@@ -1,0 +1,8 @@
+<% provide(:title, "Employees_Index") %>
+<div class="top">
+  <h2>従業員一覧</h2>
+  <% @employees.each do |employee| %>
+    <p><%= link_to employee.name, employee %></p>
+    <p><%= employee.email %></p>
+  <% end %>
+</div>
