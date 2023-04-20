@@ -28,11 +28,10 @@ class AbsencesController < ApplicationController
     @absence.assign_attributes(absence_params)
     if @absence.save
       flash[:success] = "更新しました"
-      redirect_to absence_path
     else
       flash[:danger] = "更新に失敗しました"
-      redirect_to absence_path
     end
+    redirect_to absence_path
   end
 
   def destroy

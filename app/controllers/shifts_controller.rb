@@ -1,6 +1,6 @@
 class ShiftsController < ApplicationController
   def index
-    #fullcalendarは@eventsという変数が必須
+    # fullcalendarは@eventsという変数が必須
     @events = Shift.all
   end
 
@@ -32,11 +32,10 @@ class ShiftsController < ApplicationController
     @shift.assign_attributes(shift_params)
     if @shift.save
       flash[:success] = "更新しました"
-      redirect_to shift_path
     else
       flash[:danger] = "更新に失敗しました"
-      redirect_to shift_path
     end
+    redirect_to shift_path
   end
 
   def destroy

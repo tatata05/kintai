@@ -1,7 +1,7 @@
 json.array!(@events) do |shift|
   json.id shift.id
   json.title shift.employee.name
-  json.start shift.start_time 
+  json.start shift.start_time
   json.end shift.end_time
 
   if shift.status == "unapproved"
