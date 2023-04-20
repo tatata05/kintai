@@ -5,4 +5,8 @@ class AdminsController < ApplicationController
   def index
     @admins = Admin.all
   end
+
+  def show
+    @admin = Admin.find_by(id: params[:id])
+  end
 end
