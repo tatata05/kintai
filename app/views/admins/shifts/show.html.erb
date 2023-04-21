@@ -4,7 +4,7 @@
   <% if @shift == nil %>
     <p>該当するシフトは存在しません</p>
   <% else %>
-    <%= render "shared/shifts" %>
+    <%= render "shared/shift" %>
     <% if admin_signed_in? %>
       <% if @shift.status == "approved" || @shift.status == "rejected" %>
         <%= link_to "未承認に戻す", admins_shift_path(shift: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
