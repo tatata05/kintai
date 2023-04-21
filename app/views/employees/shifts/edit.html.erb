@@ -5,7 +5,7 @@
   <% end %>
   <h1>シフト申請編集</h1>
   <div class="row">
-    <%= form_with(model: @shift, local: true) do |f| %>
+    <%= form_with(model: [:employees, @shift], local: true) do |f| %>
       <div class="form-inline">
         <%= f.label :start_time,"開始時刻" %>
         <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
@@ -15,7 +15,7 @@
         <%= f.label :end_time,"終了時刻" %>
         <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
       </div>
-      <%= f.submit "編集を保存する",   class: "btn btn-primary" %>
+      <%= f.submit "編集を保存する", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

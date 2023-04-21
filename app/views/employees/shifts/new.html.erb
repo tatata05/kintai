@@ -5,7 +5,7 @@
   <% end %>
   <h1>シフト申請</h1>
   <div class="row">
-    <%= form_with(model: @shift, local: true) do |f| %>
+    <%= form_with(model: [:employees, @shift], local: true) do |f| %>
       <div class="form-inline">
         <%= f.label :start_time,"開始時刻" %>
         <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
