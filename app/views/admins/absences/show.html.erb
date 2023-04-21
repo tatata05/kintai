@@ -1,0 +1,15 @@
+<% provide(:title, "absence_show") %>
+<div class="top">
+  <h2>欠勤詳細</h2>
+  <% if @absence == nil %>
+    <p>該当する欠勤は存在しません</p>
+  <% else %>
+    <%= render "shared/absence" %>
+    <% if @absence.status == "approved" || @absence.status == "rejected" %>
+      <%= link_to "未承認に戻す", admins_absence_path(absence: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
+    <% elsif @absence.status == "unapproved" %>
+      <%= link_to "承認", admins_absence_path(absence: {status: "approved"}), method: :put, class: "btn btn-primary" %>
+      <%= link_to "却下", admins_absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

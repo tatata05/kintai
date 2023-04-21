@@ -20,7 +20,7 @@
         <% elsif current_employee.present? %>
           <li><%= link_to "シフトカレンダー", employees_shifts_path %></li>
           <li><%= link_to "シフト申請", new_employees_shift_path %></li>
-          <li><%= link_to "欠勤申請", new_absence_path %></li>
+          <li><%= link_to "欠勤申請", new_employees_absence_path %></li>
           <li><%= link_to "通知一覧", "/" %></li>
           <li><%= link_to "ログアウト", destroy_employee_session_path, method: :delete %></li>
         <% else %>

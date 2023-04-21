@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   namespace :employees do
     resources :shifts
   end
-  resources :absences
+  namespace :admins do
+    resources :absences
+  end
+  namespace :employees do
+    resources :absences
+  end
   resources :admins, only: [:index, :edit, :update]
   resources :employees, only: [:index, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
