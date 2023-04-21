@@ -18,7 +18,7 @@ class Admins::ShiftsController < ApplicationController
     end
     redirect_to admins_shift_path
   end
-  
+
   private
 
   def shift_params
