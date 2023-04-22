@@ -1,4 +1,4 @@
-class Employees::ShiftsController < ApplicationController
+class Employee::ShiftsController < ApplicationController
   def index
     # fullcalendarは@eventsという変数が必須
     @events = Shift.where(employee_id: current_employee.id)
@@ -12,7 +12,7 @@ class Employees::ShiftsController < ApplicationController
     @shift = current_employee.shifts.build(shift_params)
     if @shift.save
       flash[:success] = "シフトを申請しました"
-      redirect_to new_employees_shift_path
+      redirect_to new_employee_shift_path
     else
       flash.now[:danger] = "シフト申請に失敗しました"
       render "new"
@@ -35,12 +35,12 @@ class Employees::ShiftsController < ApplicationController
     else
       flash[:danger] = "更新に失敗しました"
     end
-    redirect_to employees_shift_path
+    redirect_to employee_shift_path
   end
 
   def destroy
     Shift.find_by(id: params[:id]).destroy
-    redirect_to employees_shifts_path
+    redirect_to employee_shifts_path
   end
 
   private

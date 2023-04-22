@@ -1,4 +1,4 @@
-class Admins::ShiftsController < ApplicationController
+class Admin::ShiftsController < ApplicationController
   def index
     # fullcalendarは@eventsという変数が必須
     @events = Shift.all
@@ -16,7 +16,7 @@ class Admins::ShiftsController < ApplicationController
     else
       flash[:danger] = "更新に失敗しました"
     end
-    redirect_to admins_shift_path
+    redirect_to admin_shift_path
   end
 
   private

@@ -1,4 +1,4 @@
-class Admins::AbsencesController < ApplicationController
+class Admin::AbsencesController < ApplicationController
   def show
     @absence = Absence.find_by(id: params[:id])
   end
@@ -11,7 +11,7 @@ class Admins::AbsencesController < ApplicationController
     else
       flash[:danger] = "更新に失敗しました"
     end
-    redirect_to admins_absence_path
+    redirect_to admin_absence_path
   end
 
   private

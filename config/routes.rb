@@ -10,16 +10,12 @@ Rails.application.routes.draw do
   get "admins/home" => "admins#home"
   root "static_pages#home"
 
-  namespace :admins do
+  namespace :admin do
     resources :shifts
-  end
-  namespace :employees do
-    resources :shifts
-  end
-  namespace :admins do
     resources :absences
   end
-  namespace :employees do
+  namespace :employee do
+    resources :shifts
     resources :absences
   end
   resources :admins, only: [:index, :edit, :update]

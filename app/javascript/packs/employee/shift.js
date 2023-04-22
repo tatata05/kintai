@@ -27,7 +27,7 @@ document.addEventListener('turbolinks:load', function() {
            today: '今日'
         }, 
         height: "auto",
-        events: '/employees/shifts.json'
+        events: '/employee/shifts.json'
     });
     //カレンダー表示
     calendar.render();

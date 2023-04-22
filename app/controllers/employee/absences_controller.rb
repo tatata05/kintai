@@ -1,4 +1,4 @@
-class Employees::AbsencesController < ApplicationController
+class Employee::AbsencesController < ApplicationController
   def new
     @absence = Absence.new
     @shifts = Shift.all
@@ -8,7 +8,7 @@ class Employees::AbsencesController < ApplicationController
     @absence = Absence.new(absence_params)
     if @absence.save
       flash[:success] = "欠勤申請をしました"
-      redirect_to new_employees_absence_path
+      redirect_to new_employee_absence_path
     else
       flash.now[:danger] = "欠勤申請に失敗しました"
       render "new"
@@ -22,7 +22,7 @@ class Employees::AbsencesController < ApplicationController
   def destroy
     Absence.find_by(id: params[:id]).destroy
     flash[:success] = "欠勤申請を削除しました"
-    redirect_to employees_shifts_path
+    redirect_to employee_shifts_path
   end
 
   private
