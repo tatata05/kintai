@@ -1,7 +1,7 @@
 <% provide(:title, "absence_show") %>
 <div class="top">
   <h2>欠勤詳細</h2>
-  <% if @absence == nil %>
+  <% if @absence.blank? %>
     <p>該当する欠勤は存在しません</p>
   <% else %>
     <%= render "shared/absence" %>

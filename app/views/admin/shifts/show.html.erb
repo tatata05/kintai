@@ -1,7 +1,7 @@
 <% provide(:title, "shift_show") %>
 <div class="top">
   <h2>シフト詳細</h2>
-  <% if @shift == nil %>
+  <% if @shift.blank? %>
     <p>該当するシフトは存在しません</p>
   <% else %>
     <%= render "shared/shift" %>
