@@ -1,5 +1,5 @@
 class Employee::AbsencesController < ApplicationController
-  before_action :correct_employee, only: [:show, :edit, :update, :destroy]
+  before_action :correct_employee, only: [:show, :destroy]
 
   def new
     @absence = Absence.new
@@ -18,11 +18,10 @@ class Employee::AbsencesController < ApplicationController
   end
 
   def show
-    @absence = Absence.find_by(id: params[:id])
   end
 
   def destroy
-    Absence.find_by(id: params[:id]).destroy
+    @absence.destroy
     flash[:success] = "欠勤申請を削除しました"
     redirect_to employee_shifts_path
   end
@@ -34,10 +33,10 @@ class Employee::AbsencesController < ApplicationController
   end
 
   def correct_employee
-    employee = Employee.find_by(id: params[:id])
-    if employee != current_employee
-      flash[:danger] = "権限がありません"
-      redirect_to employee_shifts_path
-    end
+    @absence = Absence.find_by(id: params[:id])
+    # showでも使用するため、@absenceがnilの場合の処理を先に記載
+    return if @absence.blank? || @absence.shift.employee_id == current_employee.id
+    flash[:danger] = "権限がありません"
+    redirect_to employee_shifts_path
   end
 end

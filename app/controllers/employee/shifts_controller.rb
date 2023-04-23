@@ -26,11 +26,9 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def edit
-    @shift = Shift.find_by(id: params[:id])
   end
 
   def update
-    @shift = Shift.find_by(id: params[:id])
     @shift.assign_attributes(shift_params)
     if @shift.save
       flash[:success] = "更新しました"
@@ -41,7 +39,8 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def destroy
-    Shift.find_by(id: params[:id]).destroy
+    @shift.destroy
+    flash[:success] = "シフト申請を削除しました"
     redirect_to employee_shifts_path
   end
 
@@ -52,10 +51,9 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def correct_employee
-    employee = Employee.find_by(id: params[:id])
-    if employee != current_employee
-      flash[:danger] = "権限がありません"
-      redirect_to employee_shifts_path
-    end
+    @shift = Shift.find_by(id: params[:id])
+    return if @shift.employee_id == current_employee.id
+    flash[:danger] = "権限がありません"
+    redirect_to employee_shifts_path
   end
 end
