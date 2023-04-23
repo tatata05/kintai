@@ -1,7 +1,7 @@
 <% provide(:title, "employee_show") %>
 <div class="top">
   <h2>マイページ</h2>
-  <% if @employee == nil %>
+  <% if @employee.blank? %>
     <p>該当するアカウントは存在しません</p>
   <% else %>
     <div>

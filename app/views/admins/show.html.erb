@@ -1,7 +1,7 @@
 <% provide(:title, "admin_show") %>
 <div class="top">
   <h2>管理者詳細</h2>
-  <% if @admin == nil %>
+  <% if @admin.blank? %>
     <p>該当する管理者は存在しません</p>
   <% else %>
     <div>
