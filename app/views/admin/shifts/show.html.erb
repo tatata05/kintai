@@ -6,11 +6,11 @@
   <% else %>
     <%= render "shared/shift" %>
     <% if admin_signed_in? %>
-      <% if @shift.status == "approved" || @shift.status == "rejected" %>
-        <%= link_to "未承認に戻す", admin_shift_path(shift: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
-      <% elsif @shift.status == "unapproved" %>
+      <% if @shift.status == "unapproved" %>
         <%= link_to "承認", admin_shift_path(shift: {status: "approved"}), method: :put, class: "btn btn-primary" %>
         <%= link_to "却下", admin_shift_path(shift: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "未承認に戻す", admin_shift_path(shift: {status: "unapproved"}), method: :put, class: "btn btn-primary" %>
       <% end %>
     <% end %>
   <% end %>
