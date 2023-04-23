@@ -9,6 +9,7 @@ class EmployeesController < ApplicationController
   def correct_employee
     @employee = Employee.find_by(id: params[:id])
     return if @employee.blank? || @employee == current_employee
+
     flash[:danger] = "権限がありません"
     redirect_to employee_shifts_path
   end

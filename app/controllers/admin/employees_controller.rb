@@ -19,6 +19,7 @@ class Admin::EmployeesController < ApplicationController
 
   def logged_in_admin
     return if admin_signed_in?
+
     flash[:danger] = "管理者としてログインしてください"
     redirect_to root_path
   end
