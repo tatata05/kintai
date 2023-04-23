@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   namespace :admin do
-    resources :shifts
-    resources :absences
-    resources :employees
+    resources :absences, only: [:show, :update]
+    resources :employees, only: [:index, :show, :destroy]
+    resources :shifts, only: [:index, :show, :update]
   end
   namespace :employee do
+    resources :absences, only: [:new, :create, :show, :destroy]
     resources :shifts
-    resources :absences
   end
-  resources :admins
-  resources :employees
+  resources :admins, only: [:index, :show]
+  resources :employees, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

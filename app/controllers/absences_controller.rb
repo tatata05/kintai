@@ -1,2 +1,0 @@
-class AbsencesController < ApplicationController
-end
