@@ -12,7 +12,7 @@ class Admin::EmployeesController < ApplicationController
   def destroy
     Employee.find_by(id: params[:id]).destroy
     flash[:success] = "従業員を削除しました"
-    redirect_to employees_path
+    redirect_to admin_employees_path
   end
 
   private
