@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :shifts
     resources :absences
+    resources :employees
   end
   namespace :employee do
     resources :shifts
