@@ -1,4 +1,6 @@
 class Employee::AbsencesController < ApplicationController
+  before_action :correct_employee, only: [:show, :edit, :update, :destroy]
+
   def new
     @absence = Absence.new
     @shifts = Shift.all
@@ -29,5 +31,13 @@ class Employee::AbsencesController < ApplicationController
 
   def absence_params
     params.require(:absence).permit(:shift_id, :status)
+  end
+
+  def correct_employee
+    employee = Employee.find_by(id: params[:id])
+    if employee != current_employee
+      flash[:danger] = "権限がありません"
+      redirect_to employee_shifts_path
+    end
   end
 end

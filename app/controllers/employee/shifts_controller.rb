@@ -1,4 +1,6 @@
 class Employee::ShiftsController < ApplicationController
+  before_action :correct_employee, only: [:edit, :update, :destroy]
+
   def index
     # fullcalendarは@eventsという変数が必須
     @events = Shift.where(employee_id: current_employee.id)
@@ -47,5 +49,13 @@ class Employee::ShiftsController < ApplicationController
 
   def shift_params
     params.require(:shift).permit(:start_time, :end_time, :status)
+  end
+
+  def correct_employee
+    employee = Employee.find_by(id: params[:id])
+    if employee != current_employee
+      flash[:danger] = "権限がありません"
+      redirect_to employee_shifts_path
+    end
   end
 end
