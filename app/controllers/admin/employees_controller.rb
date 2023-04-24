@@ -21,6 +21,6 @@ class Admin::EmployeesController < ApplicationController
     return if admin_signed_in?
 
     flash[:danger] = "管理者としてログインしてください"
-    redirect_to root_path
+    redirect_to new_admin_session_path
   end
 end
