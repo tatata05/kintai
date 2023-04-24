@@ -1,2 +1,0 @@
-class ShiftsController < ApplicationController
-end
