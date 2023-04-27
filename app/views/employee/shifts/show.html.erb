@@ -4,7 +4,7 @@
   <% if @shift.blank? %>
     <p>該当するシフトは存在しません</p>
   <% else %>
-    <%= render "shared/shift" %>
+    <%= render "shared/shift", shift: @shift %>
     <% if current_employee.id == @shift.employee_id && @shift.status == "unapproved" %>
       <%= link_to "編集", edit_employee_shift_path, class: "btn btn-primary" %>
       <%= link_to "取消", employee_shift_path, method: :delete, data: {confirm: "シフトを削除してよろしいですか？"}, class: "btn btn-primary" %>

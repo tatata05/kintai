@@ -4,7 +4,7 @@
   <% if @shift.blank? %>
     <p>該当するシフトは存在しません</p>
   <% else %>
-    <%= render "shared/shift" %>
+    <%= render "shared/shift", shift: @shift %>
     <% if admin_signed_in? %>
       <% if @shift.status == "unapproved" # TODO:status変更時に通知作成 %>
         <%= link_to "承認", admin_shift_path(shift: {status: "approved"}), method: :put, class: "btn btn-primary" %>
