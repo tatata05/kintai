@@ -57,7 +57,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    employee_path(@employee.id)
+    employee_path(resource)
   end
 
   # The path used after sign up for inactive accounts.
