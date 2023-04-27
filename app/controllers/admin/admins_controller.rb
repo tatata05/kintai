@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class Admin::AdminsController < ApplicationController
   before_action :logged_in_admin, only: [:home, :index, :show]
 
   def home

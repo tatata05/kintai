@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class Employee::EmployeesController < ApplicationController
   before_action :correct_employee, only: [:show]
 
   def show
