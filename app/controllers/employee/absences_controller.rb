@@ -35,7 +35,10 @@ class Employee::AbsencesController < ApplicationController
   def correct_employee
     @absence = Absence.find_by(id: params[:id])
     # showでも使用するため、@absenceがnilの場合の処理を先に記載
-    return if @absence.blank? || @absence.shift.employee_id == current_employee.id
+    return if @absence.blank?
+
+    return if @absence.shift.employee_id == current_employee.id
+
     flash[:danger] = "権限がありません"
     redirect_to employee_shifts_path
   end
