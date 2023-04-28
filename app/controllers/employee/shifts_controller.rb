@@ -3,7 +3,7 @@ class Employee::ShiftsController < ApplicationController
 
   def index
     # fullcalendarは@eventsという変数が必須
-    @events = Shift.where(employee_id: current_employee.id)
+    @events = current_employee.shifts
   end
 
   def new
