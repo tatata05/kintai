@@ -1,0 +1,16 @@
+<% provide(:title, "admin_show") %>
+<div class="top">
+  <h2>管理者詳細</h2>
+  <% if @admin.blank? %>
+    <p>該当する管理者は存在しません</p>
+  <% else %>
+    <div>
+      <p>[管理者名]<br><%= @admin.name %></p>
+      <p>[メールアドレス]<br><%= @admin.email %></p>
+    </div>
+    <% if current_admin == @admin %>
+      <%= link_to "編集", edit_admin_registration_path, class: "btn btn-primary" %>
+      <%= link_to "取消", admin_registration_path, method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

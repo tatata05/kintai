@@ -2,7 +2,7 @@
 <div class="top">
   <h2>従業員一覧</h2>
   <% @employees.each do |employee| %>
-    <p><%= link_to employee.name, employee %></p>
+    <p><%= link_to employee.name, admin_employee_path(id: employee.id) %></p>
     <p><%= employee.email %></p>
   <% end %>
 </div>

@@ -7,18 +7,19 @@ Rails.application.routes.draw do
     registrations: 'employees/registrations',
     sessions: 'employees/sessions'
   }
-  get "admins/home" => "admins#home"
+  get "admin/home" => "admin#home"
   root "static_pages#home"
 
   namespace :admin do
-    resources :shifts
-    resources :absences
+    resources :absences, only: [:show, :update]
+    resources :admins, only: [:index, :show]
+    resources :employees, only: [:index, :show, :destroy]
+    resources :shifts, only: [:index, :show, :update]
   end
   namespace :employee do
+    resources :absences, only: [:new, :create, :show, :destroy]
+    resources :employees, only: [:show]
     resources :shifts
-    resources :absences
   end
-  resources :admins, only: [:index, :edit, :update]
-  resources :employees, only: [:index, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

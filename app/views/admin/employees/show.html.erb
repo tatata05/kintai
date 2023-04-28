@@ -1,0 +1,10 @@
+<% provide(:title, "employee_show") %>
+<div class="top">
+  <h2>従業員詳細</h2>
+  <% if @employee.blank? %>
+    <p>該当するアカウントは存在しません</p>
+  <% else %>
+    <%= render "shared/employee", employee: @employee %>
+    <%= link_to "削除", admin_employee_path, method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, class: "btn btn-primary" %>
+  <% end %>
+</div>

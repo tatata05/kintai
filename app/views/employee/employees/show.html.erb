@@ -1,0 +1,10 @@
+<% provide(:title, "employee_show") %>
+<div class="top">
+  <h2>マイページ</h2>
+  <% if @employee.blank? %>
+    <p>該当するアカウントは存在しません</p>
+  <% else %>
+    <%= render "shared/employee", employee: @employee %>
+    <%= link_to "編集", edit_employee_registration_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

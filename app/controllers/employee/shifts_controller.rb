@@ -53,6 +53,7 @@ class Employee::ShiftsController < ApplicationController
   def correct_employee
     @shift = Shift.find_by(id: params[:id])
     return if @shift.employee_id == current_employee.id
+
     flash[:danger] = "権限がありません"
     redirect_to employee_shifts_path
   end
