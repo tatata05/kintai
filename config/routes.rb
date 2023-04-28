@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     registrations: 'employees/registrations',
     sessions: 'employees/sessions'
   }
-  get "admin/admins/home" => "admin/admins#home"
+  get "admin/home" => "admin#home"
   root "static_pages#home"
 
   namespace :admin do
