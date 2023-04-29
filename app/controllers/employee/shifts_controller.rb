@@ -13,6 +13,7 @@ class Employee::ShiftsController < ApplicationController
   def create
     @shift = current_employee.shifts.build(shift_params)
     if @shift.save
+      Notification.create(shift_id: @shift.id, kind: 0)
       flash[:success] = "シフトを申請しました"
       redirect_to new_employee_shift_path
     else
