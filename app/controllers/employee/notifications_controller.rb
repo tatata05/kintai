@@ -1,6 +1,6 @@
 class Employee::NotificationsController < ApplicationController
   def index
-    @notifications = current_employee.notifications
+    @notifications = current_employee.notifications.by_recently_created
   end
 
   def update

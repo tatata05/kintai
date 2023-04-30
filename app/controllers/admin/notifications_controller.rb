@@ -1,6 +1,6 @@
 class Admin::NotificationsController < ApplicationController
   def index
-    @notifications = Notification.all
+    @notifications = Notification.all.by_recently_created
   end
 
   def update
