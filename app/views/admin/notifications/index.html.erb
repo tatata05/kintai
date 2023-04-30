@@ -2,32 +2,31 @@
 <div class="top">
   <h2>通知一覧</h2>
   <% @notifications.each do |notification| %>
-    <% if notification.employee_id.present? %>
+    <% case notification.kind %>
+    <% when "application" %>
+      <% if notification.shift_id.present? %>
+        <p>[<%= notification.read %>]</p>
+        <p><%= link_to "シフトが申請されました", admin_notification_path(notification.id), method: :put %></p>
+        <p><%= notification.employee.name %>さんからシフトが申請されました。</p>
+      <% else %>
+        <p>[<%= notification.read %>]</p>
+        <p><%= link_to "欠勤が申請されました", admin_notification_path(notification.id), method: :put %></p>
+        <p><%= notification.employee.name %>さんから欠勤が申請されました。</p>
+      <% end %>
+    <% when "approval_pending" %>
+      <% if notification.shift_id.present? %>
+        <p>[<%= notification.read %>]</p>
+        <p><%= link_to "シフトの申請を承認(却下)してください", admin_notification_path(notification.id), method: :put %></p>
+        <p><%= notification.employee.name %>さんからシフトが申請されましたが、承認(却下)されておりません。承認(却下)してください。</p>
+      <% else %>
+        <p>[<%= notification.read %>]</p>
+        <p><%= link_to "欠勤の申請を承認(却下)してください", admin_notification_path(notification.id), method: :put %></p>
+        <p><%= notification.employee.name %>さんから欠勤が申請されましたが、承認(却下)されておりません。承認(却下)してください。</p>
+      <% end %>
+    <% when "unapplied" %>
       <p>[<%= notification.read %>]</p>
       <p><%= link_to "シフトが未申請です", admin_notification_path(notification.id), method: :put %></p>
       <p><%= notification.employee.name %>さんがシフト申請をしておりません。</p>
-    <% elsif notification.shift_id.present? %>
-      <% case notification.kind %>
-      <% when "application" %>
-        <p>[<%= notification.read %>]</p>
-        <p><%= link_to "シフトが申請されました", admin_notification_path(notification.id), method: :put %></p>
-        <p><%= notification.shift.employee.name %>さんからシフトが申請されました。</p>
-      <% when "approval_pending" %>
-        <p>[<%= notification.read %>]</p>
-        <p><%= link_to "シフトの申請を承認(却下)してください", admin_notification_path(notification.id), method: :put %></p>
-        <p><%= notification.shift.employee.name %>さんからシフトが申請されましたが、承認(却下)されておりません。承認(却下)してください。</p>
-      <% end %>
-    <% elsif notification.absence_id.present? %>
-      <% case notification.kind %>
-      <% when "application" %>
-        <p>[<%= notification.read %>]</p>
-        <p><%= link_to "欠勤が申請されました", admin_notification_path(notification.id), method: :put %></p>
-        <p><%= notification.absence.shift.employee.name %>さんから欠勤が申請されました。</p>
-      <% when "approval_pending" %>
-        <p>[<%= notification.read %>]</p>
-        <p><%= link_to "欠勤の申請を承認(却下)してください", admin_notification_path(notification.id), method: :put %></p>
-        <p><%= notification.absence.shift.employee.name %>さんから欠勤が申請されましたが、承認(却下)されておりません。承認(却下)してください。</p>
-      <% end %>
     <% end %>
   <% end %>
 </div>

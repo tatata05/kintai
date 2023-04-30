@@ -14,9 +14,9 @@ class Admin::ShiftsController < ApplicationController
     if @shift.save
       case @shift.status
       when "approved"
-        Notification.create(shift_id: @shift.id, kind: 1)
+        Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: 1)
       when "rejected"
-        Notification.create(shift_id: @shift.id, kind: 3)
+        Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: 3)
       end
       flash[:success] = "更新しました"
     else

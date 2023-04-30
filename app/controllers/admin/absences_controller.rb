@@ -9,9 +9,9 @@ class Admin::AbsencesController < ApplicationController
     if @absence.save
       case @absence.status
       when "approved"
-        Notification.create(absence_id: @absence.id, kind: 1)
+        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: 1)
       when "rejected"
-        Notification.create(absence_id: @absence.id, kind: 3)
+        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: 3)
       end
       flash[:success] = "更新しました"
     else
