@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :employee do
     resources :absences, only: [:new, :create, :show, :destroy]
     resources :employees, only: [:show]
+    resources :notifications, only: [:index, :update]
     resources :shifts
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -12,6 +12,12 @@ class Admin::ShiftsController < ApplicationController
     @shift = Shift.find_by(id: params[:id])
     @shift.assign_attributes(shift_params)
     if @shift.save
+      case @shift.status
+      when "approved"
+        Notification.create(shift_id: @shift.id, kind: 1)
+      when "rejected"
+        Notification.create(shift_id: @shift.id, kind: 3)
+      end
       flash[:success] = "更新しました"
     else
       flash[:danger] = "更新に失敗しました"

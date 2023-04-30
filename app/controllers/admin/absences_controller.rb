@@ -7,6 +7,12 @@ class Admin::AbsencesController < ApplicationController
     @absence = Absence.find_by(id: params[:id])
     @absence.assign_attributes(absence_params)
     if @absence.save
+      case @absence.status
+      when "approved"
+        Notification.create(absence_id: @absence.id, kind: 1)
+      when "rejected"
+        Notification.create(absence_id: @absence.id, kind: 3)
+      end
       flash[:success] = "更新しました"
     else
       flash[:danger] = "更新に失敗しました"

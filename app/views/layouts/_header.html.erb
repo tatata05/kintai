@@ -21,7 +21,7 @@
           <li><%= link_to "シフトカレンダー", employee_shifts_path %></li>
           <li><%= link_to "シフト申請", new_employee_shift_path %></li>
           <li><%= link_to "欠勤申請", new_employee_absence_path %></li>
-          <li><%= link_to "通知一覧", "/" %></li>
+          <li><%= link_to "通知一覧", employee_notifications_path %></li>
           <li><%= link_to "ログアウト", destroy_employee_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "従業員ログイン", new_employee_session_path %></li>
