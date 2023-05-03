@@ -11,7 +11,7 @@ class Employee::NotificationsController < ApplicationController
     elsif notification.absence_id.present?
       redirect_to employee_absence_path(notification.absence_id)
     else
-      redirect_to employee_employee_path(notification.employee_id)
+      redirect_to new_employee_shift_path
     end
   end
 end
