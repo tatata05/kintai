@@ -5,23 +5,15 @@
     <% case notification.kind %>
     <% when "approval" %>
       <% if notification.shift_id.present? %>
-        <p>[<%= notification.read ? '既読' : '未読' %>]</p>
-        <p><%= link_to "シフトが承認されました", employee_notification_path(notification.id), method: :put %></p>
-        <p>シフトが承認されました。</p>
+        <%= render "employee/notifications/approval", notification: notification, type: "シフト" %>
       <% else %>
-        <p>[<%= notification.read ? '既読' : '未読' %>]</p>
-        <p><%= link_to "欠勤が承認されました", employee_notification_path(notification.id), method: :put %></p>
-        <p>欠勤が承認されました。</p>
+        <%= render "employee/notifications/approval", notification: notification, type: "欠勤" %>
       <% end %>
     <% when "rejected" %>
       <% if notification.shift_id.present? %>
-        <p>[<%= notification.read ? '既読' : '未読' %>]</p>
-        <p><%= link_to "シフトが却下されました", employee_notification_path(notification.id), method: :put %></p>
-        <p>シフトが却下されました。</p>
+        <%= render "employee/notifications/rejected", notification: notification, type: "シフト" %>
       <% else %>
-        <p>[<%= notification.read ? '既読' : '未読' %>]</p>
-        <p><%= link_to "欠勤が却下されました", employee_notification_path(notification.id), method: :put %></p>
-        <p>欠勤が却下されました。</p>
+        <%= render "employee/notifications/rejected", notification: notification, type: "欠勤" %>
       <% end %>
     <% when "unapplied" %>
       <p>[<%= notification.read ? '既読' : '未読' %>]</p>

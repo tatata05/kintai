@@ -1,0 +1,3 @@
+<p>[<%= notification.read ? '既読' : '未読' %>]</p>
+<p><%= link_to "#{type}が却下されました", employee_notification_path(notification.id), method: :put %></p>
+<p><%= type %>が却下されました。</p>
