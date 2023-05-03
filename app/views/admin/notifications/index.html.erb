@@ -2,23 +2,6 @@
 <div class="top">
   <h2>通知一覧</h2>
   <% @notifications.each do |notification| %>
-    <% case notification.kind %>
-    <% when "application" %>
-      <% if notification.shift_id.present? %>
-        <%= render "admin/notifications/application", notification: notification, type: "シフト" %>
-      <% else %>
-        <%= render "admin/notifications/application", notification: notification, type: "欠勤" %>
-      <% end %>
-    <% when "approval_pending" %>
-      <% if notification.shift_id.present? %>
-        <%= render "admin/notifications/approval_pending", notification: notification, type: "シフト" %>
-      <% else %>
-        <%= render "admin/notifications/approval_pending", notification: notification, type: "欠勤" %>
-      <% end %>
-    <% when "unapplied" %>
-      <p>[<%= notification.read ? '既読' : '未読' %>]</p>
-      <p><%= link_to "シフトが未申請です", admin_notification_path(notification.id), method: :put %></p>
-      <p><%= notification.employee.name %>さんがシフト申請をしておりません。</p>
-    <% end %>
+    <%= display_admin_notification(notification) %>
   <% end %>
 </div>
