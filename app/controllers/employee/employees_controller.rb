@@ -11,6 +11,6 @@ class Employee::EmployeesController < ApplicationController
     return if @employee.blank? || @employee == current_employee
 
     flash[:danger] = "権限がありません"
-    redirect_to employee_shifts_path
+    redirect_to new_employee_session_path
   end
 end

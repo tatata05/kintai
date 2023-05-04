@@ -1,4 +1,6 @@
 class Admin::NotificationsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @notifications = Notification.all.by_recently_created
   end

@@ -1,5 +1,5 @@
 class Admin::EmployeesController < ApplicationController
-  before_action :logged_in_admin, only: [:index, :show, :destroy]
+  before_action :authenticate_admin!
 
   def index
     @employees = Employee.all
@@ -13,14 +13,5 @@ class Admin::EmployeesController < ApplicationController
     Employee.find_by(id: params[:id]).destroy
     flash[:success] = "従業員を削除しました"
     redirect_to admin_employees_path
-  end
-
-  private
-
-  def logged_in_admin
-    return if admin_signed_in?
-
-    flash[:danger] = "管理者としてログインしてください"
-    redirect_to new_admin_session_path
   end
 end
