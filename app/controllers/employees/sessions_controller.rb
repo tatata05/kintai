@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Employees::SessionsController < Devise::SessionsController
-  before_action :logged_out_admin, only: [:new]
+  before_action :logged_out_admin, only: [:new, :create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
