@@ -13,7 +13,10 @@ class Employee::ShiftsController < ApplicationController
 
   def create
     @shift = current_employee.shifts.build(shift_params)
-    if @shift.save
+    if overlapping_time?
+      flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
+      render "new"
+    elsif @shift.save
       Notification.create(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")
       flash[:success] = "シフトを申請しました"
       redirect_to new_employee_shift_path
@@ -32,12 +35,16 @@ class Employee::ShiftsController < ApplicationController
 
   def update
     @shift.assign_attributes(shift_params)
-    if @shift.save
+    if overlapping_time?
+      flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
+      render "edit"
+    elsif @shift.save
       flash[:success] = "更新しました"
+      redirect_to employee_shift_path
     else
-      flash[:danger] = "更新に失敗しました"
+      flash.now[:danger] = "更新に失敗しました"
+      render "edit"
     end
-    redirect_to employee_shift_path
   end
 
   def destroy
@@ -58,5 +65,9 @@ class Employee::ShiftsController < ApplicationController
 
     flash[:danger] = "権限がありません"
     redirect_to employee_shifts_path
+  end
+
+  def overlapping_time?
+    current_employee.shifts.where('end_time > ? and ? > start_time', @shift.start_time, @shift.end_time).exists?
   end
 end
