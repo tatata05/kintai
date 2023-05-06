@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: [:employee, @absence], local: true) do |f| %>
-      <%= f.select :shift_id, @shifts.map{ |shift| [shift.start_time, shift.id, {"data-shift_id": shift.id}] } %>
+      <%= f.select :shift_id, @shifts.where(status: "approved").map{ |shift| [shift.start_time, shift.id, {"data-shift_id": shift.id}] } %>
       <%= f.submit "欠勤申請をする", class: "btn btn-primary" %>
     <% end %>
   </div>
