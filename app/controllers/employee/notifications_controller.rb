@@ -1,6 +1,6 @@
 class Employee::NotificationsController < ApplicationController
   def index
-    @notifications = current_employee.notifications.by_recently_created
+    @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).by_recently_created
   end
 
   def update
