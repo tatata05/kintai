@@ -12,4 +12,12 @@ class Notification < ApplicationRecord
     rejected: 3,
     unapplied: 4
   }
+
+  def type
+    if self.shift_id.present?
+      "シフト"
+    else
+      "欠勤"
+    end
+  end
 end
