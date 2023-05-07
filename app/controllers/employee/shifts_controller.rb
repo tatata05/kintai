@@ -4,7 +4,8 @@ class Employee::ShiftsController < ApplicationController
 
   def index
     # fullcalendarは@eventsという変数が必須
-    @events = current_employee.shifts
+    # absenceも一覧に表示させるため、earger_loadによって結合しておく
+    @events = current_employee.shifts.eager_load(:absence)
   end
 
   def new
