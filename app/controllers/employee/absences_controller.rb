@@ -7,7 +7,7 @@ class Employee::AbsencesController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
       @absence = Absence.new(absence_params)
       if @absence.save
         Notification.create(employee_id: current_employee.id, absence_id: @absence.id, kind: "application")

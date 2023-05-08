@@ -11,7 +11,7 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
       @shift = current_employee.shifts.build(shift_params)
       if @shift.save
         Notification.create(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")

@@ -4,7 +4,7 @@ class Admin::AbsencesController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
       @absence = Absence.find_by(id: params[:id])
       @absence.assign_attributes(absence_params)
       if @absence.save

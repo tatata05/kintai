@@ -9,7 +9,7 @@ class Admin::ShiftsController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
       @shift = Shift.find_by(id: params[:id])
       @shift.assign_attributes(shift_params)
       if @shift.save
