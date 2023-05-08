@@ -52,6 +52,10 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    admin_admin_path(resource)
+  end
+
   def after_update_path_for(resource)
     admin_path(resource)
   end

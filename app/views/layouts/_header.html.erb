@@ -1,11 +1,13 @@
 <header class="navbar navbar-expand-md bg-dark text-white fixed-top">
   <div class="container">
-    <%= link_to "kintai", root_path , id: "logo" %>
-    <% if current_admin.present? #ログイン状態確認用%>
-    <%= current_admin.name %>
-    <% end %>
-    <% if current_employee.present? #ログイン状態確認用 %>
-    <%= current_employee.name %>
+    <% if current_admin.present? %>
+      <%= link_to "kintai", admin_home_path , id: "logo" %>
+      <%= link_to current_admin.name, admin_admin_path(current_admin) %>
+    <% elsif current_employee.present? %>
+      <p id = logo>kintai</p>
+      <%= link_to current_employee.name, employee_employee_path(current_employee) %>
+    <% else %>
+      <%= link_to "kintai", root_path , id: "logo" %>
     <% end %>
     <nav>
       <ul class="navbar-nav nav navbar-right">
