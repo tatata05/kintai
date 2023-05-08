@@ -4,6 +4,4 @@ class Employee::EmployeesController < ApplicationController
   def show
     @employee = Employee.find_by(id: current_employee.id)
   end
-
-  private
 end
