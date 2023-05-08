@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admins::SessionsController < Devise::SessionsController
+  before_action :logged_out_employee, only: [:new, :create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -18,7 +19,14 @@ class Admins::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def logged_out_employee
+    return unless employee_signed_in?
+
+    flash[:danger] = "管理者としてログインするには、先に従業員アカウントからログアウトしてください"
+    redirect_to employee_shifts_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

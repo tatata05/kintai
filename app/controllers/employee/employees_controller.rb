@@ -1,16 +1,7 @@
 class Employee::EmployeesController < ApplicationController
-  before_action :correct_employee, only: [:show]
+  before_action :authenticate_employee!
 
   def show
-  end
-
-  private
-
-  def correct_employee
-    @employee = Employee.find_by(id: params[:id])
-    return if @employee.blank? || @employee == current_employee
-
-    flash[:danger] = "権限がありません"
-    redirect_to employee_shifts_path
+    @employee = Employee.find_by(id: current_employee.id)
   end
 end

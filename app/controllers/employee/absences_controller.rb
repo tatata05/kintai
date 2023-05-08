@@ -1,4 +1,5 @@
 class Employee::AbsencesController < ApplicationController
+  before_action :authenticate_employee!
   before_action :correct_employee, only: [:show, :destroy]
 
   def new

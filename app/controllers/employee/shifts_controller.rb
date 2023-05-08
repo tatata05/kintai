@@ -1,4 +1,5 @@
 class Employee::ShiftsController < ApplicationController
+  before_action :authenticate_employee!
   before_action :correct_employee, only: [:edit, :update, :destroy]
 
   def index

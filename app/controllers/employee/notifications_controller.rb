@@ -1,4 +1,6 @@
 class Employee::NotificationsController < ApplicationController
+  before_action :authenticate_employee!
+
   def index
     @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).by_recently_created
   end

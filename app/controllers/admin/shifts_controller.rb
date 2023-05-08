@@ -1,4 +1,6 @@
 class Admin::ShiftsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     # fullcalendarは@eventsという変数が必須
     @events = Shift.all

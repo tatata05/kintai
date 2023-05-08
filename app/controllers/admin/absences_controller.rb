@@ -1,4 +1,6 @@
 class Admin::AbsencesController < ApplicationController
+  before_action :authenticate_admin!
+
   def show
     @absence = Absence.find_by(id: params[:id])
   end
