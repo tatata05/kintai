@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   namespace :employee do
     resources :absences, only: [:new, :create, :show, :destroy]
-    resources :employees, only: [:show]
+    resource :employees, only: [:show]
     resources :notifications, only: [:index, :update]
     resources :shifts
   end
