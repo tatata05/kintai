@@ -3,6 +3,7 @@ class Admin::ShiftsController < ApplicationController
 
   def index
     # fullcalendarは@eventsという変数が必須
+    # absenceも一覧に表示させるため、preloadによって結合しておく
     @events = Shift.preload(:absence)
   end
 
