@@ -1,0 +1,7 @@
+<% provide(:title, "Notifications_Index") %>
+<div class="top">
+  <h2>通知一覧</h2>
+  <% @notifications.each do |notification| %>
+    <%= display_admin_notification(notification) %>
+  <% end %>
+</div>

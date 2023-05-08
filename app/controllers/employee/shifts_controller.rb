@@ -11,13 +11,16 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def create
-    @shift = current_employee.shifts.build(shift_params)
-    if @shift.save
-      flash[:success] = "シフトを申請しました"
-      redirect_to new_employee_shift_path
-    else
-      flash.now[:danger] = "シフト申請に失敗しました"
-      render "new"
+    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+      @shift = current_employee.shifts.build(shift_params)
+      if @shift.save
+        Notification.create(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")
+        flash[:success] = "シフトを申請しました"
+        redirect_to new_employee_shift_path
+      else
+        flash.now[:danger] = "シフト申請に失敗しました"
+        render "new"
+      end
     end
   end
 
