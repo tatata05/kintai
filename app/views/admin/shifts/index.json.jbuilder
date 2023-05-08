@@ -3,27 +3,19 @@ json.array!(@events) do |shift|
   json.start shift.start_time
   json.end shift.end_time
 
-  if shift.absence.present? 
-    case shift.absence.status
-    when "unapproved"
-      json.color "#FE8212"
-    when "approved"
-      json.color "#CDC958"
-    when "rejected"
-      json.color "#89EE15"
-    end
-    json.title "[欠勤] #{shift.employee.name}"
+  if shift.absence.present? && shift.absence.status == "unapproved"
+    json.color "#89EE15"
+    json.title "[欠勤申請] #{shift.employee.name}"
     json.url admin_absence_path(shift.absence.id)
   else
     case shift.status
     when "unapproved"
-      json.color "#20B1C4"
+      json.color "#CDC958"
+      json.title "[シフト申請] #{shift.employee.name}"
     when "approved"
-      json.color "#2B425A"
-    when "rejected"
-      json.color "#ED570D"
+      json.color "#20B1C4"
+      json.title "[確定] #{shift.employee.name}"
     end
-    json.title "[シフト] #{shift.employee.name}"
     json.url admin_shift_path(shift.id)
   end
 end
