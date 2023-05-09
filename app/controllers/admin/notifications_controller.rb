@@ -2,7 +2,7 @@ class Admin::NotificationsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @notifications = Notification.all.where(kind: ["application", "approval_pending", "unapplied"]).by_recently_created.page(params[:page]).per(10)
+    @notifications = Notification.where(kind: ["application", "approval_pending", "unapplied"]).by_recently_created.page(params[:page]).per(10)
   end
 
   def update
