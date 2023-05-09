@@ -5,4 +5,5 @@
     <p><%= link_to employee.name, admin_employee_path(id: employee.id) %></p>
     <p><%= employee.email %></p>
   <% end %>
+  <%= paginate @employees %>
 </div>
