@@ -4,7 +4,7 @@ json.array!(@events) do |shift|
   json.end shift.end_time
 
   if shift.absence.present? && shift.absence.status == "unapproved"
-    json.color "#89EE15"
+    json.color "#FE8212"
     json.title "[欠勤申請] #{shift.employee.name}"
     json.url admin_absence_path(shift.absence.id)
   else
