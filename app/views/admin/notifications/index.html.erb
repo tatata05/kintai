@@ -7,4 +7,5 @@
   <% @notifications.each do |notification| %>
     <%= display_admin_notification(notification) %>
   <% end %>
+  <%= paginate @notifications %>
 </div>

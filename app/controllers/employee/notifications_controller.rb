@@ -3,11 +3,11 @@ class Employee::NotificationsController < ApplicationController
 
   def index
     if params[:read] == "true"
-      @notifications = current_employee.notifications.where(read: true).by_recently_created
+      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).where(read: true).by_recently_created.page(params[:page]).per(10)
     elsif params[:read] == "false"
-      @notifications = current_employee.notifications.where(read: false).by_recently_created
+      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).where(read: false).by_recently_created.page(params[:page]).per(10)
     else
-      @notifications = current_employee.notifications.by_recently_created
+      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).by_recently_created.page(params[:page]).per(10)
     end
   end
 
