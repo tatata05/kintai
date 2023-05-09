@@ -2,7 +2,13 @@ class Admin::NotificationsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @notifications = Notification.all.by_recently_created
+    if params[:read] == "true"
+      @notifications = Notification.where(read: true).by_recently_created
+    elsif params[:read] == "false"
+      @notifications = Notification.where(read: false).by_recently_created
+    else
+      @notifications = Notification.all.by_recently_created
+    end
   end
 
   def update

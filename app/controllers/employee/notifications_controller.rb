@@ -2,7 +2,13 @@ class Employee::NotificationsController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @notifications = current_employee.notifications.by_recently_created
+    if params[:read] == "true"
+      @notifications = current_employee.notifications.where(read: true).by_recently_created
+    elsif params[:read] == "false"
+      @notifications = current_employee.notifications.where(read: false).by_recently_created
+    else
+      @notifications = current_employee.notifications.by_recently_created
+    end
   end
 
   def update
