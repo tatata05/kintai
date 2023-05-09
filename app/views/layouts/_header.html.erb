@@ -5,7 +5,7 @@
       <%= link_to current_admin.name, admin_admin_path(current_admin) %>
     <% elsif current_employee.present? %>
       <p id = logo>kintai</p>
-      <%= link_to current_employee.name, employee_employee_path(current_employee) %>
+      <%= link_to current_employee.name, employee_employees_path %>
     <% else %>
       <%= link_to "kintai", root_path , id: "logo" %>
     <% end %>
