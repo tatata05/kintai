@@ -4,7 +4,8 @@ class Employee::AbsencesController < ApplicationController
 
   def new
     @absence = Absence.new
-    @shifts = Shift.all
+    # left_outer_joinsによってShiftとAbsenceを結合し、その中で欠勤申請がされていないものかつ、承認済みのもの(承認前のシフトの場合は編集・削除できるから)
+    @shifts = Shift.left_outer_joins(:absence).where(absence: { id: nil }, status: "approved")
   end
 
   def create
