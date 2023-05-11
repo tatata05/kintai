@@ -2,13 +2,10 @@ class Employee::NotificationsController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    if params[:read] == "true"
-      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).where(read: true).by_recently_created.page(params[:page]).per(10)
-    elsif params[:read] == "false"
-      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).where(read: false).by_recently_created.page(params[:page]).per(10)
-    else
-      @notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"]).by_recently_created.page(params[:page]).per(10)
-    end
+    notifications = current_employee.notifications.where(kind: ["approval", "rejected", "unapplied"])
+    notifications = notifications.where(read: true) if params[:read] == "true"
+    notifications = notifications.where(read: false) if params[:read] == "false"
+    @notifications = notifications.by_recently_created.page(params[:page]).per(10)
   end
 
   def update
