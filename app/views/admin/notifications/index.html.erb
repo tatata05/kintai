@@ -1,6 +1,9 @@
 <% provide(:title, "Notifications_Index") %>
 <div class="top">
   <h2>通知一覧</h2>
+  <%= link_to "未読のみ", admin_notifications_path(:read => "false") %>
+  <%= link_to "既読のみ", admin_notifications_path(:read => "true") %>
+  <%= link_to "全て", admin_notifications_path %>
   <% @notifications.each do |notification| %>
     <%= display_admin_notification(notification) %>
   <% end %>
