@@ -85,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: kintai_production
-  username: kintai
-  password: <%= ENV['KINTAI_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
