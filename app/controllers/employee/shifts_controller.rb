@@ -5,7 +5,7 @@ class Employee::ShiftsController < ApplicationController
   def index
     # fullcalendarは@eventsという変数が必須
     # absenceも一覧に表示させるため、eager_loadによって結合しておく
-    @events = current_employee.shifts.eager_load(:absence).where(absence: {status: ["unapproved", "rejected"]}, status: ["approved", "unapproved"]).or(Shift.where(absence: {id: nil}, status: ["approved", "unapproved"]))
+    @events = current_employee.shifts.eager_load(:absence).where(absence: {status: ["unapproved", "rejected"]}, status: ["approved", "unapproved"]).or(current_employee.shifts.where(absence: {id: nil}, status: ["approved", "unapproved"]))
   end
 
   def new
