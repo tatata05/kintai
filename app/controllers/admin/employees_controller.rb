@@ -10,8 +10,13 @@ class Admin::EmployeesController < ApplicationController
   end
 
   def destroy
-    Employee.find_by(id: params[:id]).destroy
-    flash[:success] = "従業員を削除しました"
-    redirect_to admin_employees_path
+    employee = Employee.find_by(id: params[:id])
+    if employee.email == 'guest@example.com'
+      redirect_to admin_home_path, alert: 'ゲスト従業員は削除できません。'
+    else
+      employee.destroy
+      flash[:success] = "従業員を削除しました"
+      redirect_to admin_employees_path
+    end
   end
 end

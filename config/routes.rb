@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     registrations: 'employees/registrations',
     sessions: 'employees/sessions'
   }
+  devise_scope :admin do
+    post 'admins/guest_sign_in', to: 'admins/sessions#guest_admin_sign_in'
+  end
+  devise_scope :employee do
+    post 'employees/guest_sign_in', to: 'employees/sessions#guest_employee_sign_in'
+  end
   get "admin/home" => "admin#home"
   root "static_pages#home"
 
