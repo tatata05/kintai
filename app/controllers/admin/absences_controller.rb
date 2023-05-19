@@ -6,7 +6,7 @@ class Admin::AbsencesController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @absence = Absence.find_by(id: params[:id])
       @absence.assign_attributes(absence_params)
       if @absence.save
@@ -20,8 +20,12 @@ class Admin::AbsencesController < ApplicationController
       else
         flash[:danger] = "更新に失敗しました"
       end
+    end
+    rescue => e
+      flash[:danger] = "エラーが発生しました"
       redirect_to admin_absence_path
     end
+    redirect_to admin_absence_path
   end
 
   private

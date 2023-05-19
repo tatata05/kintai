@@ -12,7 +12,7 @@ class Admin::ShiftsController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @shift = Shift.find_by(id: params[:id])
       @shift.assign_attributes(shift_params)
       if @shift.save
@@ -26,8 +26,11 @@ class Admin::ShiftsController < ApplicationController
       else
         flash[:danger] = "更新に失敗しました"
       end
-      redirect_to admin_shift_path
     end
+    rescue => e
+      flash[:danger] = "エラーが発生しました"
+    end
+    redirect_to admin_shift_path
   end
 
   private

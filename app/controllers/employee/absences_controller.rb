@@ -9,7 +9,7 @@ class Employee::AbsencesController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @absence = Absence.new(absence_params)
       if @absence.save
         Notification.create(employee_id: current_employee.id, absence_id: @absence.id, kind: "application")
@@ -19,6 +19,10 @@ class Employee::AbsencesController < ApplicationController
         flash.now[:danger] = "欠勤申請に失敗しました"
         render "new"
       end
+    end
+    rescue => e
+      flash[:danger] = "エラーが発生しました"
+      redirect_to new_employee_absence_path
     end
   end
 

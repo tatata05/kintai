@@ -13,7 +13,7 @@ class Employee::ShiftsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @shift = current_employee.shifts.build(shift_params)
       if overlapping_time?
         flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
@@ -26,6 +26,10 @@ class Employee::ShiftsController < ApplicationController
         flash.now[:danger] = "シフト申請に失敗しました"
         render "new"
       end
+    end
+    rescue => e
+      flash[:danger] = "エラーが発生しました"
+      redirect_to new_employee_shift_path
     end
   end
 
