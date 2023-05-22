@@ -9,7 +9,7 @@ class Admin::AbsencesController < ApplicationController
     ActiveRecord::Base.transaction do
       @absence = Absence.find_by(id: params[:id])
       @absence.assign_attributes(absence_params)
-      if @absence.save
+      if @absence.save!
         case @absence.status
         when "approved"
           Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "approval")
@@ -17,15 +17,12 @@ class Admin::AbsencesController < ApplicationController
           Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "rejected")
         end
         flash[:success] = "更新しました"
-      else
-        flash[:danger] = "更新に失敗しました"
+        redirect_to admin_shifts_path
       end
     end
-    rescue => e
-      flash[:danger] = "エラーが発生しました"
-      redirect_to admin_absence_path
-    end
-    redirect_to admin_absence_path
+  rescue
+    flash[:danger] = "更新に失敗しました"
+    redirect_to admin_shifts_path
   end
 
   private

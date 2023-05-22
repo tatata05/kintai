@@ -18,19 +18,15 @@ class Employee::ShiftsController < ApplicationController
       if overlapping_time?
         flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
         render "new"
-      elsif @shift.save
+      elsif @shift.save!
         Notification.create(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")
         flash[:success] = "シフトを申請しました"
         redirect_to new_employee_shift_path
-      else
-        flash.now[:danger] = "シフト申請に失敗しました"
-        render "new"
       end
     end
-    rescue => e
-      flash[:danger] = "エラーが発生しました"
-      redirect_to new_employee_shift_path
-    end
+  rescue
+    flash.now[:danger] = "シフト申請に失敗しました"
+    render "new"
   end
 
   def show

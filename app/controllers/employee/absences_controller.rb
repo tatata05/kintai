@@ -11,19 +11,15 @@ class Employee::AbsencesController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @absence = Absence.new(absence_params)
-      if @absence.save
+      if @absence.save!
         Notification.create(employee_id: current_employee.id, absence_id: @absence.id, kind: "application")
         flash[:success] = "欠勤申請をしました"
         redirect_to new_employee_absence_path
-      else
-        flash.now[:danger] = "欠勤申請に失敗しました"
-        render "new"
       end
     end
-    rescue => e
-      flash[:danger] = "エラーが発生しました"
-      redirect_to new_employee_absence_path
-    end
+  rescue
+    flash.now[:danger] = "欠勤申請に失敗しました"
+    render "new"
   end
 
   def show

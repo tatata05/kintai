@@ -15,7 +15,7 @@ class Admin::ShiftsController < ApplicationController
     ActiveRecord::Base.transaction do
       @shift = Shift.find_by(id: params[:id])
       @shift.assign_attributes(shift_params)
-      if @shift.save
+      if @shift.save!
         case @shift.status
         when "approved"
           Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "approval")
@@ -23,14 +23,12 @@ class Admin::ShiftsController < ApplicationController
           Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "rejected")
         end
         flash[:success] = "更新しました"
-      else
-        flash[:danger] = "更新に失敗しました"
+        redirect_to admin_shifts_path
       end
     end
-    rescue => e
-      flash[:danger] = "エラーが発生しました"
-    end
-    redirect_to admin_shift_path
+  rescue
+    flash[:danger] = "更新に失敗しました"
+    redirect_to admin_shifts_path
   end
 
   private
