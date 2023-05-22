@@ -2,6 +2,7 @@
 
 class Employees::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
+  before_action :ensure_normal_employee, only: [:update, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -58,6 +59,12 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     employee_employee_path(resource)
+  end
+
+  def ensure_normal_employee
+    if resource.email == 'guest_employee@example.com'
+      redirect_to employee_employees_path, alert: 'ゲスト管理者は更新・削除できません。'
+    end
   end
 
   # The path used after sign up for inactive accounts.
