@@ -8,6 +8,12 @@ class Employees::SessionsController < Devise::SessionsController
     employee_shifts_path
   end
 
+  def guest_employee_sign_in
+    employee = Employee.guest
+    sign_in employee
+    redirect_to employee_shifts_path, notice: 'ゲスト従業員としてログインしました。'
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
