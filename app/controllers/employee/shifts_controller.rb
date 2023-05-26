@@ -19,8 +19,8 @@ class Employee::ShiftsController < ApplicationController
         flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
         return render "new"
       end
-      @shift.save!
-      Notification.create(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")
+      @shift.save! # overlapping_time?で重複チェックを行う必要があるため、create!ではなくbuild+save!
+      Notification.create!(employee_id: current_employee.id, shift_id: @shift.id, kind: "application")
       flash[:success] = "シフトを申請しました"
     end
     redirect_to new_employee_shift_path
