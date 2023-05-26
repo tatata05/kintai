@@ -15,6 +15,10 @@ class Employee::ShiftsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @shift = current_employee.shifts.build(shift_params)
+      notification = Notification.find_by(employee_id: current_employee.id, kind: "unapplied")
+      if notification.present? #シフト未申請通知があった場合に、シフトを申請したらその通知を削除する
+        notification.destroy
+      end
       if overlapping_time?
         flash.now[:danger] = "その時間帯はすでにシフトを申請しています"
         return render "new"
