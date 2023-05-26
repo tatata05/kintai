@@ -6,22 +6,22 @@ class Admin::AbsencesController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @absence = Absence.find_by(id: params[:id])
       @absence.assign_attributes(absence_params)
-      if @absence.save
-        case @absence.status
-        when "approved"
-          Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "approval")
-        when "rejected"
-          Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "rejected")
-        end
-        flash[:success] = "更新しました"
-      else
-        flash[:danger] = "更新に失敗しました"
+      @absence.save!
+      case @absence.status
+      when "approved"
+        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "approval")
+      when "rejected"
+        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "rejected")
       end
-      redirect_to admin_absence_path
     end
+    flash[:success] = "更新しました"
+    redirect_to admin_shifts_path
+  rescue
+    flash[:danger] = "更新に失敗しました"
+    redirect_to admin_shifts_path
   end
 
   private
