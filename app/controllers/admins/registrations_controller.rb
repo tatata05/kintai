@@ -2,7 +2,7 @@
 
 class Admins::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
-  before_action :ensure_normal_admin, only: :destroy
+  before_action :ensure_normal_admin, only: [:update, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -62,8 +62,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_normal_admin
-    if resource.email == 'guest@example.com'
-      redirect_to admin_home_path, alert: 'ゲスト管理者は削除できません。'
+    if resource.email == 'guest_admin@example.com'
+      redirect_to admin_admin_path(current_admin), alert: 'ゲスト管理者は更新・削除できません。'
     end
   end
 

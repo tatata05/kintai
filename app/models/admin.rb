@@ -8,7 +8,7 @@ class Admin < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |admin|
+    find_or_create_by!(email: 'guest_admin@example.com') do |admin|
       admin.name = "ゲスト管理者"
       admin.password = SecureRandom.urlsafe_base64
     end

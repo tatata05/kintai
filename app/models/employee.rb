@@ -14,7 +14,7 @@ class Employee < ApplicationRecord
   validates :emergency_phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |employee|
+    find_or_create_by!(email: 'guest_employee@example.com') do |employee|
       employee.name = "ゲスト従業員"
       employee.phone_number = "080-1234-1234"
       employee.emergency_phone_number = "080-4321-4321"

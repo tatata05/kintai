@@ -11,7 +11,7 @@ class Admin::EmployeesController < ApplicationController
 
   def destroy
     employee = Employee.find_by(id: params[:id])
-    if employee.email == 'guest@example.com'
+    if employee.email == 'guest_employee@example.com'
       redirect_to admin_home_path, alert: 'ゲスト従業員は削除できません。'
     else
       employee.destroy
