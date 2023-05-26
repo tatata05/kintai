@@ -29,7 +29,7 @@ namespace :shift_applied_check do
   desc "毎月20日にシフト申請を全くしていない従業員がいた時に通知を行う"
   task shift_applied: :environment do
     employees = Employee.all
-    shifts = Shift.where("start_time > ? and ? > start_time", Date.today.beginning_of_month, Date.today.end_of_month)
+    shifts = Shift.where("start_time > ? and ? > start_time", Date.today.at_beginning_of_month.next_month, Date.today.end_of_month.next_month)
     employees.each do |employee|
       if shifts.where(employee_id: employee.id).count > 0
         Notification.create(employee_id: employee.id, kind: "unapplied")
