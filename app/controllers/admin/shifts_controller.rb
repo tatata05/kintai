@@ -5,7 +5,7 @@ class Admin::ShiftsController < ApplicationController
     # fullcalendarは@eventsという変数が必須
     # absenceも一覧に表示させるため、eager_loadによって結合しておく
     @events = Shift.eager_load(:absence).where(absence: {status: ["unapproved", "rejected"]}, status: ["approved", "unapproved"]).or(Shift.where(absence: {id: nil}, status: ["approved", "unapproved"]))
-    @notifications = Notification.where(kind: "unapplied")
+    @unapplied_notifications = Notification.where(kind: "unapplied")
   end
 
   def show
