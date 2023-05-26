@@ -4,7 +4,7 @@ namespace :shift_check do
     time = Time.now
     shifts = Shift.where(status: "unapproved")
     shifts.each do |shift|
-      if shift.created_at.since(5.days) < time && Notification.where(employee_id: shift.employee.id, shift_id: shift.id, kind: "approval_pending").count < 1
+      if shift.created_at.since(5.days) < time
         # 重複したデータを作成させないため、find_or_create_byを使用(if文を使用するより簡潔に記載できる)
         Notification.find_or_create_by(employee_id: shift.employee.id, shift_id: shift.id, kind: "approval_pending")
       end
@@ -18,7 +18,7 @@ namespace :absence_check do
     time = Time.now
     absences = Absence.where(status: "unapproved")
     absences.each do |absence|
-      if absence.created_at.since(1.day) < time && Notification.where(employee_id: absence.shift.employee.id, absence_id: absence.id, kind: "approval_pending").count < 1
+      if absence.created_at.since(1.day) < time
         Notification.find_or_create_by(employee_id: absence.shift.employee.id, absence_id: absence.id, kind: "approval_pending")
       end
     end
