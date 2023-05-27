@@ -31,11 +31,11 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-every 1.day do
+every 1.day, at: '9:00 am' do
   rake "shift_check:shift_check_approval_pending"
 end
 
-every 1.day do
+every 1.day, at: '9:00 am' do
   rake "absence_check:absence_check_approval_pending"
 end
 
