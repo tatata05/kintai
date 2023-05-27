@@ -1,6 +1,10 @@
 <% provide(:title, "admin_show") %>
 <div class="top">
-  <h2>管理者詳細</h2>
+  <% if @admin == current_admin %>
+    <h2>マイページ</h2>
+  <% else %>
+    <h2>管理者詳細</h2>
+  <% end %>
   <% if @admin.blank? %>
     <p>該当する管理者は存在しません</p>
   <% else %>
