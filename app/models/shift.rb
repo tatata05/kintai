@@ -13,4 +13,12 @@ class Shift < ApplicationRecord
   def start_end_check
     errors.add("end_time", "を開始時間より後にしてください。") if self.start_time >= self.end_time
   end
+
+  def start_time_ja
+    self.start_time.strftime('%Y/%m/%d %H:%M')
+  end
+
+  def end_time_ja
+    self.end_time.strftime('%Y/%m/%d %H:%M')
+  end
 end
