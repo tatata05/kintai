@@ -7,7 +7,7 @@ ja:
         gender: "性別"
         address: "住所"
         phone_number: "電話番号"
-        emergency_phone_number: "緊急連絡先"
+        emergency_phone_number: "緊急連絡先電話番号"
       admin:
         name: "名前"
       shift:

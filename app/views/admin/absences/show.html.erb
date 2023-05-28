@@ -11,7 +11,7 @@
           <%= link_to "承認", admin_absence_path(absence: {status: "approved"}), method: :put, class: "btn btn-primary" %>
         </div>
         <div class="col-4">
-          <%= link_to "却下", admin_absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
+          <%= link_to "却下", admin_absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "本当に却下してよろしいですか？"}, class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
