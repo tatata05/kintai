@@ -1,5 +1,5 @@
 <tr>
   <td>[<%= notification.read ? '既読' : '未読' %>]</td>
   <td><%= link_to "#{notification.type}申請の未承認", admin_notification_path(notification.id), method: :put %></td>
-  <td><%= notification.employee.name %>さんの<%= notification.type %>申請を承認(却下)してください。</td>
+  <td><%= notification.employee.name %>さんの<%= notification.type %>申請を承認(却下)してください。(<%= notification.shift_time %>)</td>
 </tr>

@@ -20,4 +20,12 @@ class Notification < ApplicationRecord
       "欠勤"
     end
   end
+
+  def shift_time
+    if self.shift_id.present?
+      self.shift.start_time.strftime('%Y/%m/%d %H:%M') + "-" + self.shift.end_time.strftime('%H:%M')
+    else
+      self.absence.shift.start_time.strftime('%Y/%m/%d %H:%M') + "-" + self.absence.shift.end_time.strftime('%H:%M')
+    end
+  end
 end

@@ -3,7 +3,7 @@
 <div class="text-center">
   <%= form_with(model: [:employee, @absence], local: true) do |f| %>
     <%= f.label "シフトを選択して欠勤申請" %><br />
-    <%= f.select :shift_id, @shifts.map{ |shift| [shift.start_time, shift.id, {"data-shift_id": shift.id}] } %>
+    <%= f.select :shift_id, @shifts.map{ |shift| [ shift.start_time.strftime('%Y/%m/%d %H:%M'), shift.id, {"data-shift_id": shift.id}] } %>
     <div class="container py-3">
       <%= f.submit "欠勤申請をする", class: "btn btn-primary" %>
     </div>

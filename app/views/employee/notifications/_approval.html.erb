@@ -1,5 +1,5 @@
 <tr>
   <td>[<%= notification.read ? '既読' : '未読' %>]</td>
   <td><%= link_to "#{notification.type}承認", employee_notification_path(notification.id), method: :put %></td>
-  <td><%= notification.type %>が承認されました。</td>
+  <td><%= notification.type %>が承認されました。(<%= notification.shift_time %>)</td>
 </tr>
