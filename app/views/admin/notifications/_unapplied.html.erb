@@ -1,3 +1,5 @@
-<p>[<%= notification.read ? '既読' : '未読' %>]</p>
-<p><%= link_to "シフトが未申請です", admin_notification_path(notification.id), method: :put %></p>
-<p><%= notification.employee.name%>さんがシフト申請をしておりません。</p>
+<tr>
+  <td>[<%= notification.read ? '既読' : '未読' %>]</td>
+  <td><%= link_to "シフト未申請", admin_notification_path(notification.id), method: :put %></td>
+  <td><%= notification.employee.name%>さんがシフト申請をしておりません。</td>
+</tr>

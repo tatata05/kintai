@@ -1,59 +1,48 @@
-<h2>従業員登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "employees/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.radio_button :gender, "男" , autofocus: true %>男
-    <%= f.radio_button :gender, "女" , autofocus: true %>女
-    <%= f.radio_button :gender, "その他" , autofocus: true %>その他
-  </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.number_field :age, min:0 ,autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :emergency_phone_number %><br />
-    <%= f.text_field :emergency_phone_number, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上で入力してください)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "従業員を登録する" %>
-  </div>
-<% end %>
+<% provide(:title, "従業員登録") %>
+<h2 class="title">従業員登録</h2>
+<div class="text-center">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "employees/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.label :name, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :email, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+    <div class="field">
+      <%= f.label :gender, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.radio_button :gender, "男" , autofocus: true %>男
+      <%= f.radio_button :gender, "女" , autofocus: true %>女
+      <%= f.radio_button :gender, "その他" , autofocus: true %>その他
+    </div>
+    <div class="field">
+      <%= f.label :age, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.number_field :age, min:15 ,autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :address, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.text_field :address, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :phone_number, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.text_field :phone_number, autofocus: true, placeholder: "080-0000-0000" %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_phone_number, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.text_field :emergency_phone_number, autofocus: true, placeholder: "090-0000-0000" %>
+    </div>
+    <div class="field">
+      <%= f.label :password, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上" %>
+    </div>
+    <div class="actions container py-3">
+      <%= f.submit "従業員を登録する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

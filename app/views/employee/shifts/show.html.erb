@@ -1,13 +1,19 @@
-<% provide(:title, "shift_show") %>
-<div class="top">
-  <h2>シフト詳細</h2>
+<% provide(:title, "シフト詳細") %>
+<h2 class="title">シフト詳細</h2>
+<div class="text-center">
   <% if @shift.blank? %>
     <p>該当するシフトは存在しません</p>
   <% else %>
     <%= render "shared/shift", shift: @shift %>
     <% if current_employee.id == @shift.employee_id && @shift.status == "unapproved" %>
-      <%= link_to "編集", edit_employee_shift_path, class: "btn btn-primary" %>
-      <%= link_to "取消", employee_shift_path, method: :delete, data: {confirm: "シフトを削除してよろしいですか？"}, class: "btn btn-primary" %>
+      <div class="d-flex justify-content-center col-8 mx-auto text-center">
+        <div class="col-3">
+          <%= link_to "編集", edit_employee_shift_path, class: "btn btn-primary" %>
+        </div>
+        <div class="col-4">
+          <%= link_to "取消", employee_shift_path, method: :delete, data: {confirm: "シフトを削除してよろしいですか？"}, class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>

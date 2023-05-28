@@ -1,19 +1,18 @@
-<h2>管理者ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "管理者としてログインする" %>
-  </div>
-<% end %>
-
-<%= link_to 'ゲスト管理者ログイン', admins_guest_sign_in_path, method: :post %>
+<% provide(:title, "管理者ログイン") %>
+<h2 class="title">管理者ログイン</h2>
+<div class="text-center">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :email, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+    <div class="field">
+      <%= f.label :password, class: "col-form-label col-sm-2 text-center" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+    <div class="actions container py-3">
+      <%= f.submit "管理者としてログインする", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <br><%= link_to 'ゲスト管理者ログイン', admins_guest_sign_in_path, method: :post %>
+</div>

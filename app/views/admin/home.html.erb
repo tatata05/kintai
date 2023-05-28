@@ -1,9 +1,10 @@
-<% provide(:title, "Admins_Home") %>
-<div class="top">
-  <div><%= link_to "管理者ホーム", admin_home_path %></div>
-  <div><%= link_to "未読通知が○件あります", admin_notifications_path %></div>
-  <div><%= link_to "シフトカレンダー", admin_shifts_path %>へ</div>
-  <div><%= link_to "管理者一覧", admin_admins_path %>へ</div>
-  <div><%= link_to "従業員一覧", admin_employees_path %>へ</div>
-  <div><%= link_to "通知一覧", admin_notifications_path %>へ</div>
+<% provide(:title, "管理者ホーム") %>
+<h2 class="title">管理者ホーム</h2>
+<div class="text-center">
+  <div class="home_margin"><%= link_to "管理者ホーム", admin_home_path %></div>
+  <div class="home_margin"><%= link_to "未読通知が○件あります", admin_notifications_path %></div>
+  <div class="home_margin"><%= link_to "シフトカレンダー", admin_shifts_path %>へ</div>
+  <div class="home_margin"><%= link_to "管理者一覧", admin_admins_path %>へ</div>
+  <div class="home_margin"><%= link_to "従業員一覧", admin_employees_path %>へ</div>
+  <div class="home_margin"><%= link_to "通知一覧", admin_notifications_path %>へ</div>
 </div>
