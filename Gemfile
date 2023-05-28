@@ -10,6 +10,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
+gem 'enum_help'
 gem "simple_calendar", "~> 2.4"
 gem 'pry-rails'
 gem 'kaminari'
