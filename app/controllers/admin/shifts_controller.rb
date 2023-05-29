@@ -12,22 +12,21 @@ class Admin::ShiftsController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
+    ActiveRecord::Base.transaction do
       @shift = Shift.find_by(id: params[:id])
-      @shift.assign_attributes(shift_params)
-      if @shift.save
-        case @shift.status
-        when "approved"
-          Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "approval")
-        when "rejected"
-          Notification.create(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "rejected")
-        end
-        flash[:success] = "更新しました"
-      else
-        flash[:danger] = "更新に失敗しました"
+      @shift.update!(shift_params)
+      case @shift.status
+      when "approved"
+        Notification.create!(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "approval")
+      when "rejected"
+        Notification.create!(employee_id: @shift.employee.id, shift_id: @shift.id, kind: "rejected")
       end
-      redirect_to admin_shift_path
     end
+    flash[:success] = "更新しました"
+    redirect_to admin_shifts_path
+  rescue
+    flash[:danger] = "更新に失敗しました"
+    redirect_to admin_shifts_path
   end
 
   private

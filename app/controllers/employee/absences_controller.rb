@@ -5,21 +5,19 @@ class Employee::AbsencesController < ApplicationController
   def new
     @absence = Absence.new
     # left_outer_joinsによってShiftとAbsenceを結合し、その中で欠勤申請がされていないものかつ、承認済みのもの(承認前のシフトの場合は編集・削除できるから)
-    @shifts = Shift.left_outer_joins(:absence).where(absence: { id: nil }, status: "approved")
+    @shifts = current_employee.shifts.left_outer_joins(:absence).where(absence: { id: nil }, status: "approved")
   end
 
   def create
-    ActiveRecord::Base.transaction do # TODO:トランザクションの設定
-      @absence = Absence.new(absence_params)
-      if @absence.save
-        Notification.create(employee_id: current_employee.id, absence_id: @absence.id, kind: "application")
-        flash[:success] = "欠勤申請をしました"
-        redirect_to new_employee_absence_path
-      else
-        flash.now[:danger] = "欠勤申請に失敗しました"
-        render "new"
-      end
+    ActiveRecord::Base.transaction do
+      @absence = Absence.create!(absence_params)
+      Notification.create!(employee_id: current_employee.id, absence_id: @absence.id, kind: "application")
+      flash[:success] = "欠勤申請をしました"
     end
+    redirect_to new_employee_absence_path
+  rescue
+    flash.now[:danger] = "欠勤申請に失敗しました"
+    render "new"
   end
 
   def show
