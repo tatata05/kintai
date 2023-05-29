@@ -19,30 +19,32 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# Rails.rootを使用するために必要
-require File.expand_path(File.dirname(__FILE__) + '/environment')
+# 以下は現時点では使用しないためコメントアウト状態,別の方法にて定期バッチ処理を行う。
 
-# cronを実行する環境変数
-rails_env = ENV['RAILS_ENV'] || :development
+# # Rails.rootを使用するために必要
+# require File.expand_path(File.dirname(__FILE__) + '/environment')
 
-# cronを実行する環境変数をセット
-set :environment, rails_env
+# # cronを実行する環境変数
+# rails_env = ENV['RAILS_ENV'] || :development
 
-# cronのログの吐き出し場所
-set :output, "#{Rails.root}/log/cron.log"
+# # cronを実行する環境変数をセット
+# set :environment, rails_env
 
-every 1.day, at: '9:00 am' do
-  rake "shift_check:shift_check_approval_pending"
-end
+# # cronのログの吐き出し場所
+# set :output, "#{Rails.root}/log/cron.log"
 
-every 1.day, at: '9:00 am' do
-  rake "absence_check:absence_check_approval_pending"
-end
+# every 1.day, at: '9:00 am' do
+#   rake "shift_check:shift_check_approval_pending"
+# end
 
-every '0 0 20 * *' do
-  rake "shift_applied_check:shift_applied"
-end
+# every 1.day, at: '9:00 am' do
+#   rake "absence_check:absence_check_approval_pending"
+# end
 
-every 1.month, at: 'start of the month at 0am' do
-  rake "notification_destroy:destroy_unapplied"
-end
+# every '0 0 20 * *' do
+#   rake "shift_applied_check:shift_applied"
+# end
+
+# every 1.month, at: 'start of the month at 0am' do
+#   rake "notification_destroy:destroy_unapplied"
+# end

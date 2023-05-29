@@ -1,5 +1,9 @@
 <% provide(:title, "管理者詳細") %>
-<h2 class="title">管理者詳細</h2>
+<% if @admin == current_admin %>
+  <h2 class="title">マイページ</h2>
+<% else %>
+  <h2 class="title">管理者詳細</h2>
+<% end %>
 <div class="text-center">
   <% if @admin.blank? %>
     <p>該当する管理者は存在しません</p>

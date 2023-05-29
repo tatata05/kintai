@@ -1,5 +1,12 @@
 <% provide(:title, "シフトカレンダー") %>
 <h2 class="title">シフトカレンダー</h2>
+<% if @unapplied_notifications.present? %>
+  <br><p>シフト未申請従業員</p>
+  <% @unapplied_notifications.each do |notification| %>
+    <%= link_to notification.employee.name, admin_employee_path(notification.employee_id) %>
+  <% end %>
+<% end %>
+</div>
 <div id='calendar'></div>
 <%= javascript_pack_tag 'admin/shift' %>
 <br>
