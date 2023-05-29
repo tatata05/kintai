@@ -8,13 +8,12 @@ class Admin::AbsencesController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       @absence = Absence.find_by(id: params[:id])
-      @absence.assign_attributes(absence_params)
-      @absence.save!
+      @absence.update!(absence_params)
       case @absence.status
       when "approved"
-        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "approval")
+        Notification.create!(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "approval")
       when "rejected"
-        Notification.create(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "rejected")
+        Notification.create!(employee_id: @absence.shift.employee.id, absence_id: @absence.id, kind: "rejected")
       end
     end
     flash[:success] = "更新しました"
