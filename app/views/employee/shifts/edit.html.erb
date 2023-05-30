@@ -1,25 +1,24 @@
-<% provide(:title, "shift_edit") %>
-<div class="top">
+<% provide(:title, "シフト申請編集") %>
+<h2 class="title">シフト申請編集</h2>
+<div class="text-center">
   <% @shift.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
-  <h1>シフト申請編集</h1>
   <% if @shift.blank? %>
     <p>該当するシフトは存在しません</p>
   <% else %>
-    <div class="row">
-      <%= form_with(model: [:employee, @shift], local: true) do |f| %>
-        <div class="form-inline">
-          <%= f.label :start_time,"開始時刻" %>
-          <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
-        </div>
-        <br>
-        <div class="form-inline"> 
-          <%= f.label :end_time,"終了時刻" %>
-          <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
-        </div>
+    <%= form_with(model: [:employee, @shift], local: true) do |f| %>
+      <%= f.label :start_time,"開始時刻" %>
+      <div class="form-inline "> 
+        <%= f.datetime_select :start_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
+      </div><br>
+      <%= f.label :end_time,"終了時刻" %>
+      <div class="form-inline"> 
+        <%= f.datetime_select :end_time, {default: Date.today, minute_step: 15}, class: 'form-control' %>
+      </div>
+      <div class="container py-3">
         <%= f.submit "編集を保存する", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

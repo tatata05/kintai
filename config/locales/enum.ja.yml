@@ -1,0 +1,12 @@
+ja:
+  enums:
+    absence:
+      status:
+        unapproved: "未承認"
+        approved: "承認"
+        rejected: "却下"
+    shift:
+      status:
+        unapproved: "未承認"
+        approved: "承認"
+        rejected: "却下"

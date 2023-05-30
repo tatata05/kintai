@@ -2,32 +2,32 @@
   <div class="container">
     <% if current_admin.present? %>
       <%= link_to "kintai", admin_home_path , id: "logo" %>
-      <%= link_to current_admin.name, admin_admin_path(current_admin) %>
+      <%= link_to current_admin.name, admin_admin_path(current_admin), class: "header_padding" %>
     <% elsif current_employee.present? %>
       <p id = logo>kintai</p>
-      <%= link_to current_employee.name, employee_employees_path %>
+      <%= link_to current_employee.name, employee_employees_path, class: "header_padding" %>
     <% else %>
       <%= link_to "kintai", root_path , id: "logo" %>
     <% end %>
     <nav>
       <ul class="navbar-nav nav navbar-right">
         <% if current_admin.present? %>
-          <li><%= link_to "シフトカレンダー", admin_shifts_path %></li>
-          <li><%= link_to "通知一覧", admin_notifications_path %></li>
-          <li><%= link_to "管理者一覧", admin_admins_path %></li>
-          <li><%= link_to "管理者登録", new_admin_registration_path %></li>
-          <li><%= link_to "従業員一覧", admin_employees_path %></li>
-          <li><%= link_to "従業員登録", new_employee_registration_path %></li>
-          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+          <li><%= link_to "シフトカレンダー", admin_shifts_path, class: "header_padding" %></li>
+          <li><%= link_to "管理者一覧", admin_admins_path, class: "header_padding" %></li>
+          <li><%= link_to "管理者登録", new_admin_registration_path, class: "header_padding" %></li>
+          <li><%= link_to "従業員一覧", admin_employees_path, class: "header_padding" %></li>
+          <li><%= link_to "従業員登録", new_employee_registration_path, class: "header_padding" %></li>
+          <li><%= link_to "通知一覧", admin_notifications_path, class: "header_padding" %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "header_padding" %></li>
         <% elsif current_employee.present? %>
-          <li><%= link_to "シフトカレンダー", employee_shifts_path %></li>
-          <li><%= link_to "シフト申請", new_employee_shift_path %></li>
-          <li><%= link_to "欠勤申請", new_employee_absence_path %></li>
-          <li><%= link_to "通知一覧", employee_notifications_path %></li>
-          <li><%= link_to "ログアウト", destroy_employee_session_path, method: :delete %></li>
+          <li><%= link_to "シフトカレンダー", employee_shifts_path, class: "header_padding" %></li>
+          <li><%= link_to "シフト申請", new_employee_shift_path, class: "header_padding" %></li>
+          <li><%= link_to "欠勤申請", new_employee_absence_path, class: "header_padding" %></li>
+          <li><%= link_to "通知一覧", employee_notifications_path, class: "header_padding" %></li>
+          <li><%= link_to "ログアウト", destroy_employee_session_path, method: :delete, class: "header_padding" %></li>
         <% else %>
-          <li><%= link_to "従業員ログイン", new_employee_session_path %></li>
-          <li><%= link_to "管理者ログイン", new_admin_session_path %></li>
+          <li><%= link_to "従業員ログイン", new_employee_session_path, class: "header_padding" %></li>
+          <li><%= link_to "管理者ログイン", new_admin_session_path, class: "header_padding" %></li>
         <% end %>
       </ul>
     </nav>

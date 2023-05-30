@@ -58,7 +58,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    employee_employee_path(resource)
+    employee_employees_path(resource)
   end
 
   def ensure_normal_employee

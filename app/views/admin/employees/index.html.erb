@@ -1,9 +1,21 @@
-<% provide(:title, "Employees_Index") %>
-<div class="top">
-  <h2>従業員一覧</h2>
-  <% @employees.each do |employee| %>
-    <p><%= link_to employee.name, admin_employee_path(id: employee.id) %></p>
-    <p><%= employee.email %></p>
-  <% end %>
+<% provide(:title, "従業員一覧") %>
+<h2 class="title">従業員一覧</h2>
+<div class="text-center">
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>従業員名</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= link_to employee.name, admin_employee_path(id: employee.id) %></td>
+          <td><%= employee.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <%= paginate @employees %>
 </div>

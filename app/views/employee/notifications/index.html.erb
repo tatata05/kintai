@@ -1,11 +1,24 @@
-<% provide(:title, "Notifications_Index") %>
-<div class="top">
-  <h2>通知一覧</h2>
-  <%= link_to "未読のみ", employee_notifications_path(:read => "false") %>
-  <%= link_to "既読のみ", employee_notifications_path(:read => "true") %>
-  <%= link_to "全て", employee_notifications_path %>
-  <% @notifications.each do |notification| %>
-    <%= display_employee_notification(notification) %>
-  <% end %>
+<% provide(:title, "通知一覧") %>
+<h2 class="title">通知一覧</h2>
+<div class="read_margin">
+  <%= link_to "未読のみ", employee_notifications_path(:read => "false"), class: "btn btn-outline-primary" %>
+  <%= link_to "既読のみ", employee_notifications_path(:read => "true"), class: "btn btn-outline-primary" %>
+  <%= link_to "全て", employee_notifications_path, class: "btn btn-outline-primary" %>
+</div>
+<div class="text-center">
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>状態</th>
+        <th>内容</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notifications.each do |notification| %>
+        <%= display_employee_notification(notification) %>
+      <% end %>
+    </tbody>
+  </table>
   <%= paginate @notifications %>
 </div>

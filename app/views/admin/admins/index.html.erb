@@ -1,9 +1,21 @@
-<% provide(:title, "Admins_Index") %>
-<div class="top">
-  <h2>管理者一覧</h2>
-  <% @admins.each do |admin| %>
-    <p><%= link_to admin.name, admin_admin_path(admin.id) %></p>
-    <p><%= admin.email %></p>
-  <% end %>
+<% provide(:title, "管理者一覧") %>
+<h2 class="title">管理者一覧</h2>
+<div class="text-center">
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>管理者名</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admins.each do |admin| %>
+        <tr>
+          <td><%= link_to admin.name, admin_admin_path(admin.id) %></td>
+          <td><%= admin.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <%= paginate @admins %>
 </div>

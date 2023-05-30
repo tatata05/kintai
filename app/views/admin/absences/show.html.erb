@@ -1,13 +1,19 @@
-<% provide(:title, "absence_show") %>
-<div class="top">
-  <h2>欠勤詳細</h2>
+<% provide(:title, "欠勤詳細") %>
+<h2 class="title">欠勤詳細</h2>
+<div class="text-center">
   <% if @absence.blank? %>
     <p>該当する欠勤は存在しません</p>
   <% else %>
     <%= render "shared/absence", absence: @absence %>
-    <% if @absence.status == "unapproved" # TODO:status変更時に通知作成 %>
-      <%= link_to "承認", admin_absence_path(absence: {status: "approved"}), method: :put, class: "btn btn-primary" %>
-      <%= link_to "却下", admin_absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "欠勤申請を却下してよろしいですか？"}, class: "btn btn-primary" %>
+    <% if @absence.status == "unapproved" %>
+      <div class="d-flex justify-content-center col-8 mx-auto text-center">
+        <div class="col-3">
+          <%= link_to "承認", admin_absence_path(absence: {status: "approved"}), method: :put, class: "btn btn-primary" %>
+        </div>
+        <div class="col-4">
+          <%= link_to "却下", admin_absence_path(absence: {status: "rejected"}), method: :put, data: {confirm: "本当に却下してよろしいですか？"}, class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>

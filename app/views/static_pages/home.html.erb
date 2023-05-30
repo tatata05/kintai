@@ -1,6 +1,6 @@
-<% provide(:title, "Home") %>
-<div class="top">
-  <h1>ホーム</h1>
-  <div><%= link_to "従業員ログイン", new_employee_session_path %>へ</div>
-  <div><%= link_to "管理者ログイン", new_admin_session_path %>へ</div>
+<% provide(:title, "ホーム") %>
+<h2 class="title">ホーム</h2>
+<div class="text-center">
+  <div class="home_margin"><%= link_to "従業員ログイン", new_employee_session_path %>へ</div>
+  <div class="home_margin"><%= link_to "管理者ログイン", new_admin_session_path %>へ</div>
 </div>

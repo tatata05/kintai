@@ -58,7 +58,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    admin_path(resource)
+    admin_admin_path(resource)
   end
 
   def ensure_normal_admin

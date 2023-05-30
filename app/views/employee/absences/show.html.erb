@@ -1,12 +1,12 @@
-<% provide(:title, "absence_show") %>
-<div class="top">
-  <h2>欠勤詳細</h2>
+<% provide(:title, "欠勤詳細") %>
+<h2 class="title">欠勤詳細</h2>
+<div class="text-center">
   <% if @absence.blank? %>
     <p>該当する欠勤は存在しません</p>
   <% else %>
     <%= render "shared/absence", absence: @absence %>
     <% if current_employee.id == @absence.shift.employee_id && @absence.status == "unapproved" %>
-      <%= link_to "取消", employee_absence_path, method: :delete, data: {confirm: "欠勤申請を削除してよろしいですか？"}, class: "btn btn-primary" %>
+      <%= link_to "取消", employee_absence_path, method: :delete, data: {confirm: "本当に取消してよろしいですか？"}, class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>
