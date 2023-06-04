@@ -16,7 +16,7 @@ gem 'pry-rails'
 gem 'kaminari'
 gem 'whenever', require: false
 # Use postgresql as the database for Active Record
-
+gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -54,10 +54,6 @@ group :development do
   gem 'spring'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-end
-
-group :production do
-	gem "pg", "~> 1.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
