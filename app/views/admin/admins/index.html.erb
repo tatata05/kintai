@@ -1,7 +1,17 @@
 <% provide(:title, "管理者一覧") %>
 <h2 class="title">管理者一覧</h2>
 <div class="text-center">
-  <table class="table text-center">
+  <div class="container row">
+    <div class="col-10 mx-auto d-flex justify-content-center align-items-center">
+      <div class="col-5">
+        <%= form_with(url: admin_admins_path, method: :get, local: true) do |f| %>
+          <%= f.text_field :search, placeholder: "管理者名で検索" %>
+          <%= f.submit '検索', class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <table class="table text-center home_margin">
     <thead>
       <tr>
         <th>管理者名</th>
